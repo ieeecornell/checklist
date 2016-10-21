@@ -1,0 +1,211 @@
+header.main-nav
+  .inside
+    h1 <span>check</span>list
+    nav
+      a(href="http://ieeecornell.org") Back to Cornell IEEE &rarr;
+.checklist-container
+  ul.checklist
+    li.category
+      h2
+        span.title Mathematics
+        span.status <span class="incomplete">4/5</span> Completed
+      ul
+        li
+          h3 Single Variable Calculus
+          span MATH 1910
+        li
+          h3 Multivariable Calculus
+          span MATH 1920
+        li
+          h3 Differential Equations
+          span MATH 2930
+        li
+          h3 Linear Algebra
+          span MATH 2940
+        li
+          h3 Probability
+          span.incomplete <em>Incomplete</em>
+    li.category
+      h2
+        span.title Science
+        span.status <span class="incomplete">1/4</span> Completed
+      ul
+        li
+          h3 Physics I: Mechanics
+          span PHYS 1112
+        li
+          h3 Physics II: Electricity and Magnetism
+          span.incomplete <em>Incomplete</em>
+        li
+          h3 Physics III: Waves and Optics
+          span.incomplete <em>Incomplete</em>
+        li
+          h3 Chemistry
+          span.incomplete <em>Incomplete</em>
+    li.category
+      h2
+        span.title Computer Science
+        span.status <span class="complete">2/2</span> Completed
+      ul
+        li
+          h3 Introduction to Computer Science
+          span CS 1110
+        li
+          h3 Advanced Programming/Computer Engineering
+          span CS 2110
+    li.category
+      h2
+        span.title Introduction to Engineering
+        span.status <span class="incomplete">0/1</span> Completed
+      ul
+        li
+          h3 Introduction to Engineering
+          span.incomplete <em>Incomplete</em>
+    li.category
+      h2
+        span.title Engineering Distribution
+        span.status <span class="incomplete">0/1</span> Completed
+      ul
+        li
+          h3 Engineering Distribution
+          span.incomplete <em>Incomplete</em>
+    li.category
+      h2
+        span.title First-Year Writing Seminars
+        span.status <span class="incomplete">0/2</span> Completed
+      ul
+        li
+          h3 First-Year Writing Seminar 1
+          span.incomplete <em>Incomplete</em>
+        li
+          h3 First-Year Writing Seminar 2
+          span.incomplete <em>Incomplete</em>
+    li.category
+      h2
+        span.title Liberal Studies
+        span.status <span class="incomplete">0/6</span> Completed
+      ul
+        li
+          h3 Liberal Studies 1
+          span.incomplete <em>Incomplete</em>
+        li
+          h3 Liberal Studies 2
+          span.incomplete <em>Incomplete</em>
+        li
+          h3 Liberal Studies 3
+          span.incomplete <em>Incomplete</em>
+        li
+          h3 Liberal Studies 4
+          span.incomplete <em>Incomplete</em>
+        li
+          h3 Liberal Studies 5
+          span.incomplete <em>Incomplete</em>
+        li
+          h3 Liberal Studies 6
+          span.incomplete <em>Incomplete</em>
+    li.category
+      h2
+        span.title ECE Core Courses
+        span.status <span class="complete">4/4</span> Completed
+      ul
+        li
+          h3 Introduction to Circuits
+          span ECE 2100
+        li
+          h3 Signals and Systems
+          span ECE 2200
+        li
+          h3 Introduction to Digital Logic
+          span ECE 2300
+        li
+          h3 ECE Practice and Design
+          span ECE 3400
+    li.category
+      h2
+        span.title ECE Foundation Courses
+        span.status <span class="incomplete">0/3</span> Completed
+      ul
+        li
+          h3 Foundation Course 1
+          span.incomplete <em>Incomplete</em>
+        li
+          h3 Foundation Course 2
+          span.incomplete <em>Incomplete</em>
+        li
+          h3 Foundation Course 3
+          span.incomplete <em>Incomplete</em>
+    li.category
+      h2
+        span.title Upper Level ECE Electives
+        span.status <span class="incomplete">0/7</span> Completed
+      ul
+        li
+          h3 Culminating Design Experience 1
+          span.incomplete <em>Incomplete</em>
+        li
+          h3 Culminating Design Experience 2
+          span.incomplete <em>Incomplete</em>
+        li
+          h3 Breadth/Depth 1
+          span.incomplete <em>Incomplete</em>
+        li
+          h3 Breadth/Depth 2
+          span.incomplete <em>Incomplete</em>
+        li
+          h3 ECE 3000+ Elective 1
+          span.incomplete <em>Incomplete</em>
+        li
+          h3 ECE 3000+ Elective 2
+          span.incomplete <em>Incomplete</em>
+        li
+          h3 ECE 3000+ Elective 3
+          span.incomplete <em>Incomplete</em>
+    li.category
+      h2
+        span.title Outside-ECE Technical Electives
+        span.status <span class="incomplete">0/3</span> Completed
+      ul
+        li
+          h3 Outside Technical Elective 1
+          span.incomplete <em>Incomplete</em>
+        li
+          h3 Outside Technical Elective 2
+          span.incomplete <em>Incomplete</em>
+        li
+          h3 Outside Technical Elective 3
+          span.incomplete <em>Incomplete</em>
+
+.courses-container
+  ul.course-list
+    li.semester.ap-credits
+      h2 AP Credits
+      ul
+        li.add-course
+          a.button(href="#") + Add AP Credit
+    li.semester data-semester="F" data-year="2014"
+      h2 Fall 2014
+      ul
+        li(data-id="1")
+          h3 MATH 1920
+          a.remove href="#" title="Remove" &times;
+        li(data-id="2")
+          h3 PHYS 1112
+          a.remove href="#" title="Remove" &times;
+        li(data-id="3")
+          h3 MEDVL 1101
+          a.remove href="#" title="Remove" &times;
+        li(data-id="4")
+          h3 ENGRI 1820
+          a.remove href="#" title="Remove" &times;
+        li.add-course
+          a.button href="#" + Add Course
+    li.semester.add-semester
+      h2
+        form
+          select id="semester"
+            option value="W" Winter
+            option value="S" Spring
+            option value="Su" Summer
+            option(selected value="F") Fall
+          input type="text" id="year" placeholder="Year"
+          input type="submit" class="button" value="+ Add"

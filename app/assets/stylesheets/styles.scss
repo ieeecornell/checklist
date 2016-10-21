@@ -1,0 +1,330 @@
+// -----------------------------------------------------------------------------
+// Colors
+// -----------------------------------------------------------------------------
+$red: #c0392b;
+$dark_blue: #2c3e50;
+$white: #fff;
+$black: #000;
+$light_gray: #eee;
+$medium_light_gray: #999;
+$medium_dark_gray: #555;
+$dark_gray: #111;
+$green: #2ecc71;
+$green_highlight: #27ae60;
+$blue: #2980b9;
+$blue_highlight: #3498db;
+$red: #e85242;
+$red_highlight: #c0392b;
+
+// -----------------------------------------------------------------------------
+// Base styles
+// -----------------------------------------------------------------------------
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+.cf {
+    *zoom: 1;
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Bitter', serif;
+}
+
+input,
+select {
+    outline: 0;
+}
+
+// -----------------------------------------------------------------------------
+// Layout
+// -----------------------------------------------------------------------------
+.inside {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.checklist-container {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 50%;
+    bottom: 0;
+    overflow-y: auto;
+}
+
+.courses-container {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+    background: #eee;
+}
+
+// -----------------------------------------------------------------------------
+// Header
+// -----------------------------------------------------------------------------
+header.main-nav {
+    background: $dark_blue;
+    @extend .cf;
+
+    h1 {
+        float: left;
+        color: $white;
+        margin: 0;
+        height: 60px;
+        line-height: 60px;
+
+        span {
+            color: $red;
+        }
+    }
+
+    nav {
+        float: right;
+
+        a {
+            color: $white;
+            text-decoration: none;
+            margin: 10px 0;
+            padding: 10px 15px;
+            height: 20px;
+            line-height: 20px;
+            border-radius: 20px;
+            font-size: 18px;
+            display: block;
+
+            &:hover {
+                background: $light_gray;
+                color: $dark_gray;
+            }
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Checklist
+// -----------------------------------------------------------------------------
+.checklist {
+    margin: 1em 10%;
+    padding: 0;
+
+    li {
+        list-style: none;
+    }
+
+    h2 {
+        @extend .cf;
+        margin: 0;        
+
+        .title,
+        .status {
+            display: block;
+            height: 30px;
+            line-height: 30px;
+        }
+
+        .title {
+            float: left;
+        }
+
+        .status {
+            float: right;
+            font-size: 16px;
+        }
+
+        .complete {
+            color: $green;
+        }
+
+        .incomplete {
+            color: $red;
+        }
+    }
+
+    .category {
+        margin-bottom: 1em;
+
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            @extend .cf;
+            border: 1px solid $medium_light_gray;
+            margin-bottom: 0.5em;
+        }
+
+        h3 {
+            margin: 0;
+            padding: 12px;
+            height: 20px;
+            line-height: 20px;
+            font-family: sans-serif;
+            font-size: 1em;
+            font-weight: normal;
+            width: 70%;
+            float: left;
+        }
+
+        ul span {
+            display: block;
+            margin: 6px;
+            height: 20px;
+            line-height: 20px;
+            padding: 6px 12px;
+            border-radius: 16px;
+            text-align: center;
+            float: right;
+            background: $green;
+            color: $white;
+        }
+
+        ul span.incomplete {
+            background: $red;
+            font-style: italic;
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Courses
+// -----------------------------------------------------------------------------
+.course-list {
+    padding: 0;
+    margin: 0;
+
+    li {
+        list-style: none;
+
+    }
+
+    .semester {
+        h2 {
+            background: $medium_light_gray;
+            margin: 0 0 16px;
+            padding: 8px 10%;
+
+            form {
+                @extend .cf;
+            }
+
+            select,
+            input {
+                font-family: 'Bitter', serif;
+                font-weight: bold;
+            }
+
+            select {
+                background: transparent;
+                border: 0;
+                border-bottom: 1px solid $dark_gray;
+                cursor: pointer;
+                height: 30px;
+                line-height: 30px;
+                float: left;
+            }
+
+            input[type='text'] {
+                height: 27px;
+                line-height: 27px;
+                width: 80px;
+                margin-left: 10px;
+                background: transparent;
+                border: 0;
+                border-bottom: 1px solid $dark_gray;
+                float: left;
+            }
+
+            input[type="submit"] {
+                height: 30px;
+                line-height: 30px;
+                margin-left: 10px;
+                border: 0;
+                background: $medium_dark_gray;
+                color: $white;
+                cursor: pointer;
+                float: left;
+                font-size: 16px;
+                font-family: sans-serif;
+                font-weight: normal;
+
+                &:hover {
+                    background: darken($medium_dark_gray, 10%);
+                }
+            }
+
+            ::-webkit-input-placeholder {
+                color: $dark_gray;
+            }
+
+            :-moz-placeholder {
+                color: $dark_gray;
+            }
+
+            ::-moz-placeholder {
+                color: $dark_gray;
+            }
+
+            :-ms-input-placeholder {
+                color: $dark_gray;
+            }
+        }
+
+        ul {
+            @extend .cf;
+            margin: 0 10% 8px;
+            padding: 0;
+        }
+
+        li {
+            @extend .cf;
+            background: $blue;
+            color: $white;
+            float: left;
+            margin: 0 8px 8px 0;
+        }
+
+        h3 {
+            margin: 0;
+            padding: 8px;
+            font-family: sans-serif;
+            font-size: 1em;
+            font-weight: bold;
+            float: left;
+        }
+
+        a {
+            color: $white;
+            text-decoration: none;
+            display: block;
+
+            &:hover {
+                background: darken($blue, 10%);
+            }
+        }
+
+        a.remove {
+            float: right;
+            padding: 8px;
+            border-left: 1px solid darken($blue, 10%);
+            cursor: pointer;
+        }
+
+        a.button {
+            padding: 8px;
+        }
+    }
+}
