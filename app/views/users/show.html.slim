@@ -198,7 +198,7 @@ header.main-nav
           span.incomplete <em>Incomplete</em>
 
 .courses-container
-  ul.course-list
+  ul.course-list#course-list
     li.semester.ap-credits
       h2 AP Credits
       ul
@@ -223,8 +223,8 @@ header.main-nav
           a.button href="#" + Add Course
     li.semester.add-semester
       h2
-        form
-          select id="semester"
+        form#add-semester-form
+          select#semester
             option value="W" Winter
             option value="S" Spring
             option value="Su" Summer
