@@ -78,66 +78,84 @@
 #   puts "Found #{courses_count - not_found_count}/#{courses_count} courses"
 # end
 
-# # ------------------------------------------------------------------------------
-# # Add all of the groups
-# # ------------------------------------------------------------------------------
-# Group.destroy_all
+# ------------------------------------------------------------------------------
+# Add all of the groups
+# ------------------------------------------------------------------------------
+Group.destroy_all
 
-# # Add the groups that are explicitly defined in the JSON
-# group_file = File.read(File.join(Dir.pwd, 'db', 'seed_data', 'groups.json'))
-# group_json = JSON.parse(group_file)
+# Add the groups that are explicitly defined in the JSON
+group_file = File.read(File.join(Dir.pwd, 'db', 'seed_data', 'groups.json'))
+group_json = JSON.parse(group_file)
 
-# puts '-------------'
-# puts 'Adding groups'
-# puts '-------------'
-# group_json.each do |group|
-#   db_group = Group.create(name: group['name'])
+puts '-------------'
+puts 'Adding groups'
+puts '-------------'
+group_json.each do |group|
+  puts "-> Adding #{group['name']}"
+  db_group = Group.create(name: group['name'])
 
-#   group['courses'].each do |code|
-#     db_course = Course.where("'#{code}' = ANY(codes)").first
-#     if db_course.blank?
-#       puts "Could not find course #{code}"
-#     else
-#       db_group.courses << db_course
-#     end
-#   end
-# end
+  group['courses'].each do |code|
+    db_course = Course.where("'#{code}' = ANY(codes)").first
+    if db_course.blank?
+      puts "Could not find course #{code}"
+    else
+      db_group.courses << db_course
+    end
+  end
+end
 
-# # ------------------------------------------------------------------------------
-# # Add all of the categories and requirements
-# # ------------------------------------------------------------------------------
-# Category.destroy_all
-# Requirement.destroy_all
+# Add a liberal studies group
+puts '-> Adding Liberal Studies'
+ls_group = Group.create(name: 'Liberal Studies')
+ls_group.courses << Course.where("metadata ? 'libstud'")
 
-# cr_file = File.read(File.join(Dir.pwd, 'db', 'seed_data',
-#                               'categories_requirements.json'))
-# cr_json = JSON.parse(cr_file)
+# Add a FWS group
+puts '-> Adding First-year Writing Seminar'
+fws_group = Group.create(name: 'First-year Writing Seminar')
+fws_group.courses << Course.where("title ILIKE 'FWS:%'")
 
-# puts '----------------------------------'
-# puts 'Adding categories and requirements'
-# puts '----------------------------------'
+# Add an ENGRI group
+puts '-> Adding Introduction to Engineering'
+engri_group = Group.create(name: 'Introduction to Engineering')
+engri_group.courses << Course.find_by_sql("SELECT c.* " +
+                                          "FROM courses c, unnest(codes) a " +
+                                          "WHERE a LIKE 'ENGRI%'")
 
-# cat_seq = 0
-# cr_json.each do |cat|
-#   # Create the category
-#   db_cat = Category.create(name: cat['name'], sequence: cat_seq)
-#   cat_seq += 1
+# ------------------------------------------------------------------------------
+# Add all of the categories and requirements
+# ------------------------------------------------------------------------------
+Category.destroy_all
+Requirement.destroy_all
 
-#   # Create all of the requirements
-#   req_seq = 0
-#   cat['requirements'].each do |req|
-#     # Get the group
-#     group = Group.where(name: req['group_name']).first
+cr_file = File.read(File.join(Dir.pwd, 'db', 'seed_data',
+                              'categories_requirements.json'))
+cr_json = JSON.parse(cr_file)
 
-#     puts "Group #{req['group_name']} not found" if group.blank?
+puts '----------------------------------'
+puts 'Adding categories and requirements'
+puts '----------------------------------'
 
-#     # Create the requirement and add it to the category
-#     db_cat.requirements << Requirement.create(
-#       display: req['name'],
-#       sequence: req_seq,
-#       group_id: group.blank? ? nil : group.id,
-#       description: req['description']
-#     )
-#     req_seq += 1
-#   end
-# end
+cat_seq = 0
+cr_json.each do |cat|
+  # Create the category
+  db_cat = Category.create(name: cat['name'], sequence: cat_seq)
+  cat_seq += 1
+
+  # Create all of the requirements
+  req_seq = 0
+  cat['requirements'].each do |req|
+    # Get the group
+    group = Group.where(name: req['group_name']).first
+
+    puts "Group #{req['group_name']} not found" if group.blank?
+
+    # Create the requirement and add it to the category
+    db_cat.requirements << Requirement.create(
+      display: req['name'],
+      sequence: req_seq,
+      group_id: group.blank? ? nil : group.id,
+      description: req['description']
+    )
+    req_seq += 1
+  end
+end
