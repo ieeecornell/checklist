@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
   root to: 'users#show'
 
-  namespace :admin do
-    resources :courses
-    resources :groups
-    resources :categories do
-      resources :requirements
-    end
+  resources :courses, only: [:index, :show]
+  resources :groups, only: [:index, :show]
+  resources :categories, only: [:index, :show] do
+    resources :requirements, only: [:index, :show]
   end
 end
