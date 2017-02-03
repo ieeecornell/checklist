@@ -2,7 +2,6 @@
     // -------------------------------------------------------------------------
     // Adding/removing courses that have been taken
     // -------------------------------------------------------------------------
-
     var courses = [];
     var semesters = [];
 
@@ -15,7 +14,7 @@
     };
 
     // Allow a new semester to get added
-    console.log($("#add-semester-form"));
+    // ---------------------------------
     $("#add-semester-form").on("submit", function(e) {
         // Don't actually submit the form
         e.preventDefault();
@@ -38,4 +37,8 @@
         // Add the new semester to the list of semesters
         $("#course-list").append($li);
     });
+
+    var cats = new Categories;
+    var catsView = new CategoriesView({collection: cats});
+    catsView.render();
 })();

@@ -13,4 +13,15 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require underscore
+//= require backbone
+//= require models/course
+//= require models/category
+//= require models/requirement
+//= require collections/categories
+//= require collections/requirements
+//= require views/requirementView
+//= require views/requirementsView
+//= require views/categoryView
+//= require views/categoriesView
 //= require app
