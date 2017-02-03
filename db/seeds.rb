@@ -39,44 +39,44 @@
 #   end
 # end
 
-# ------------------------------------------------------------------------------
-# Get all of the liberal studies
-# ------------------------------------------------------------------------------
-ls_url_base = 'https://www.engineering.cornell.edu/apps/liberalstudies'
-ls_categories = ['CA', 'HA', 'KCM', 'LA', 'SBA', 'CE']
+# # ------------------------------------------------------------------------------
+# # Get all of the liberal studies
+# # ------------------------------------------------------------------------------
+# ls_url_base = 'https://www.engineering.cornell.edu/apps/liberalstudies'
+# ls_categories = ['CA', 'HA', 'KCM', 'LA', 'SBA', 'CE']
 
-puts '------------------------'
-puts 'Fetching liberal studies'
-puts '------------------------'
+# puts '------------------------'
+# puts 'Fetching liberal studies'
+# puts '------------------------'
 
-# Get all of the courses in each of the categories
-ls_categories.each do |cat|
-  puts "-> Fetching courses in category #{cat}"
+# # Get all of the courses in each of the categories
+# ls_categories.each do |cat|
+#   puts "-> Fetching courses in category #{cat}"
 
-  page = HTTParty.get("#{ls_url_base}/#{cat}.cfm")
-  parsed_page = Nokogiri::HTML(page)
+#   page = HTTParty.get("#{ls_url_base}/#{cat}.cfm")
+#   parsed_page = Nokogiri::HTML(page)
 
-  courses_count = 0
-  not_found_count = 0
-  parsed_page.css('#content table tr').each do |tr|
-    next if tr.css('td').blank?
+#   courses_count = 0
+#   not_found_count = 0
+#   parsed_page.css('#content table tr').each do |tr|
+#     next if tr.css('td').blank?
 
-    subject_code = tr.css('td')[0].text
-    course_number = tr.css('td')[1].text
+#     subject_code = tr.css('td')[0].text
+#     course_number = tr.css('td')[1].text
 
-    code = "#{subject_code} #{course_number}"
-    course = Course.where("'#{code}' = ANY(codes)").first
+#     code = "#{subject_code} #{course_number}"
+#     course = Course.where("'#{code}' = ANY(codes)").first
 
-    if course.blank?
-      not_found_count += 1
-    else
-      course.update_attribute(:metadata, {libstud: cat})
-    end
+#     if course.blank?
+#       not_found_count += 1
+#     else
+#       course.update_attribute(:metadata, {libstud: cat})
+#     end
 
-    courses_count += 1
-  end
-  puts "Found #{courses_count - not_found_count}/#{courses_count} courses"
-end
+#     courses_count += 1
+#   end
+#   puts "Found #{courses_count - not_found_count}/#{courses_count} courses"
+# end
 
 # # ------------------------------------------------------------------------------
 # # Add all of the groups
