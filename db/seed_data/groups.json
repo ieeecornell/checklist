@@ -1,0 +1,244 @@
+[{
+  "name": "Single Variable Calculus",
+  "courses": [
+    "MATH 1910"
+  ]
+}, {
+  "name": "Multivariable Calculus",
+  "courses": [
+    "MATH 1920"
+  ]
+}, {
+  "name": "Differential Equations",
+  "courses": [
+    "MATH 2930"
+  ]
+}, {
+  "name": "Linear Algebra",
+  "courses": [
+    "MATH 2940"
+  ]
+}, {
+  "name": "Probability",
+  "courses": [
+    "ECE 3100",
+    "ENGRD 2700",
+    "CEE 3040",
+    "MSE 5730"
+  ]
+}, {
+  "name": "Physics I: Mechanics",
+  "courses": [
+    "PHYS 1112",
+    "PHYS 1116"
+  ]
+}, {
+  "name": "Physics II: Electricity and Magnetism",
+  "courses": [
+    "PHYS 2213",
+    "PHYS 2217"
+  ]
+}, {
+  "name": "Physics III: Waves and Optics",
+  "courses": [
+    "PHYS 2214",
+    "PHYS 2218"
+  ]
+}, {
+  "name": "Chemistry",
+  "courses": [
+    "CHEM 2090"
+  ]
+}, {
+  "name": "Introduction to Computer Science",
+  "courses": [
+    "CS 1110",
+    "CS 1112"
+  ]
+}, {
+  "name": "Advanced Programming/Computer Engineering",
+  "courses": [
+    "CS 2110",
+    "ENGRD 3200",
+    "AEP 4380",
+    "ECE 2400",
+    "ECE 4740",
+    "ECE 4750",
+    "ECE 4760"
+  ]
+}, {
+  "name": "Introduction to Circuits",
+  "courses": [
+    "ECE 2100"
+  ]
+}, {
+  "name": "Signals and Systems",
+  "courses": [
+    "ECE 2200"
+  ]
+}, {
+  "name": "Introduction to Digital Logic",
+  "courses": [
+    "ECE 2300"
+  ]
+}, {
+  "name": "ECE Practice and Design",
+  "courses": [
+    "ECE 3400"
+  ]
+}, {
+  "name": "ECE Foundation Courses",
+  "courses": [
+    "ECE 3030",
+    "ECE 3100",
+    "ECE 3140",
+    "ECE 3150",
+    "ECE 3250"
+  ]
+}, {
+  "name": "Culminating Design Experience",
+  "courses": [
+    "ECE 4250",
+    "ECE 4370",
+    "ECE 4530",
+    "ECE 4670",
+    "ECE 4740",
+    "ECE 4750",
+    "ECE 4760"
+  ]
+}, {
+  "name": "ECE 3000+ Elective",
+  "courses": [
+    "ECE 3030",
+    "ECE 3100",
+    "ECE 3140",
+    "ECE 3150",
+    "ECE 3250",
+    "ECE 4060",
+    "ECE 4110",
+    "ECE 4150",
+    "ECE 4210",
+    "ECE 4250",
+    "ECE 4271",
+    "ECE 4300",
+    "ECE 4320",
+    "ECE 4330",
+    "ECE 4340",
+    "ECE 4360",
+    "ECE 4370",
+    "ECE 4450",
+    "ECE 4510",
+    "ECE 4520",
+    "ECE 4530",
+    "ECE 4570",
+    "ECE 4580",
+    "ECE 4670",
+    "ECE 4730",
+    "ECE 4740",
+    "ECE 4750",
+    "ECE 4758",
+    "ECE 4760",
+    "ECE 4800",
+    "ECE 4880",
+    "ECE 5030",
+    "ECE 5040",
+    "ECE 5210",
+    "ECE 5253",
+    "ECE 5320",
+    "ECE 5340",
+    "ECE 5350",
+    "ECE 5360",
+    "ECE 5370",
+    "ECE 5470",
+    "ECE 5540",
+    "ECE 5610",
+    "ECE 5620",
+    "ECE 5630",
+    "ECE 5640",
+    "ECE 5650",
+    "ECE 5660",
+    "ECE 5670",
+    "ECE 5680",
+    "ECE 5710",
+    "ECE 5715",
+    "ECE 5720",
+    "ECE 5725",
+    "ECE 5730",
+    "ECE 5740",
+    "ECE 5745",
+    "ECE 5750",
+    "ECE 5760",
+    "ECE 5770",
+    "ECE 5790",
+    "ECE 5800",
+    "ECE 5810",
+    "ECE 5820",
+    "CS 4120",
+    "CS 4410"
+  ]
+}, {
+  "name": "ECE 4000+ Elective",
+  "courses": [
+    "ECE 4060",
+    "ECE 4110",
+    "ECE 4150",
+    "ECE 4210",
+    "ECE 4250",
+    "ECE 4271",
+    "ECE 4300",
+    "ECE 4320",
+    "ECE 4330",
+    "ECE 4340",
+    "ECE 4360",
+    "ECE 4370",
+    "ECE 4450",
+    "ECE 4510",
+    "ECE 4520",
+    "ECE 4530",
+    "ECE 4570",
+    "ECE 4580",
+    "ECE 4670",
+    "ECE 4730",
+    "ECE 4740",
+    "ECE 4750",
+    "ECE 4758",
+    "ECE 4760",
+    "ECE 4800",
+    "ECE 4880",
+    "ECE 5030",
+    "ECE 5040",
+    "ECE 5210",
+    "ECE 5253",
+    "ECE 5320",
+    "ECE 5340",
+    "ECE 5350",
+    "ECE 5360",
+    "ECE 5370",
+    "ECE 5470",
+    "ECE 5540",
+    "ECE 5610",
+    "ECE 5620",
+    "ECE 5630",
+    "ECE 5640",
+    "ECE 5650",
+    "ECE 5660",
+    "ECE 5670",
+    "ECE 5680",
+    "ECE 5710",
+    "ECE 5715",
+    "ECE 5720",
+    "ECE 5725",
+    "ECE 5730",
+    "ECE 5740",
+    "ECE 5745",
+    "ECE 5750",
+    "ECE 5760",
+    "ECE 5770",
+    "ECE 5790",
+    "ECE 5800",
+    "ECE 5810",
+    "ECE 5820",
+    "CS 4120",
+    "CS 4410"
+  ]
+}]

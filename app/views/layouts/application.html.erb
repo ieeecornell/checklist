@@ -5,11 +5,20 @@
     <%= csrf_meta_tags %>
 
     <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <header class="main-nav">
+      <div class="inside">
+        <h1><span>check</span>list</h1>
+        <nav>
+          <a href="http://ieeecornell.org">Back to Cornell IEEE &rarr;</a>
+        </nav>
+      </div>
     <%= yield %>
   </body>
 </html>
