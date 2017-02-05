@@ -45,9 +45,6 @@
     "allow_crosslisting": true
   }]
 }, {
-  "name": "Introduction to Engineering",
-  "requirements": []
-}, {
   "name": "Engineering Distributions",
   "requirements": [{
     "name": "Introduction to Engineering",
