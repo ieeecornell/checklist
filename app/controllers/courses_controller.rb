@@ -25,10 +25,20 @@ class CoursesController < ApplicationController
   end
 
   def show
-    course = Course.find(params[:id]) || not_found
+    course = begin
+               Course.find(params[:id])
+             rescue
+               Course.where("? = ANY(codes)", params[:id]).first
+             end
 
     respond_to do |format|
-      format.json { render json: course, include: :groups, status: :ok }
+      format.json do
+        if course.blank?
+          render nothing: true, status: :not_found
+        else
+          render json: course, include: :groups, status: :ok
+        end
+      end
     end
   end
 end

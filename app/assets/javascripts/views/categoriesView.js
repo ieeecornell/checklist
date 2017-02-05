@@ -44,6 +44,11 @@
      * Fills all of the requirements with the available enrolled courses.
      */
     fillRequirements: function() {
+      // Unmark any course from filling a requirement
+      this.ecs.each(function(ec) {
+        ec.unsetFills();
+      });
+
       // Try to fill any requirements that can be filled
       this.collection.each(_.bind(function(cat) {
         cat.get("requirements").each(_.bind(function(req) {

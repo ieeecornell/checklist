@@ -13,20 +13,14 @@
 
     fetchByCode: function(code) {
       $.ajax({
-        url: "/courses.json",
-        data: {code: code, limit: 1}
+        url: "/courses/" + encodeURIComponent(code) + ".json"
       }).done(_.bind(function(data) {
         if (data.length == 0) {
           this.set({codes: [code]});
         }
         else {
-          var fetchCourse = new Course({id: data[0].id});
-          fetchCourse.on("change", _.bind(function() {
-            var attrs = _.clone(fetchCourse.attributes);
-            attrs.code = code;
-            this.set(attrs);
-          }, this));
-          fetchCourse.fetch();
+          data.code = code;
+          this.set(data);
         }
       }, this)).fail(_.bind(function() {
         this.set({codes: [code]});
