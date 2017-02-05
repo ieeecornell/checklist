@@ -142,6 +142,7 @@ header.main-nav {
         .status {
             float: right;
             font-size: 16px;
+            transition: color 0.25s;
         }
 
         .complete {
@@ -178,6 +179,10 @@ header.main-nav {
             float: left;
         }
 
+            .libstud h3 {
+                width: 50%;
+            }
+
         ul span {
             display: block;
             margin: 6px;
@@ -204,6 +209,12 @@ header.main-nav {
                 background: $black;
                 color: $white;
             }
+        }
+
+        span.libstud-cat {
+            margin: 6px 0 6px 6px;
+            background: $blue;
+            color: $white;
         }
 
         ul span.course {

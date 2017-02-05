@@ -27,11 +27,23 @@
     fillReq: function(course) {
       this.$("span.course").removeClass("incomplete").addClass("complete")
         .html(course.get("code"));
+
+      // Add the liberal studies group that this fills, if necessary
+      var metadata = course.get("metadata");
+      if (metadata && metadata.libstud) {
+        this.$el.addClass("libstud");
+        this.$("span.libstud-cat").remove();
+        this.$("span.course").after(
+          "<span class='libstud-cat'>" + metadata.libstud + "</span>"
+        );
+      }
     },
 
     unfillReq: function() {
       this.$("span.course").removeClass("complete").addClass("incomplete")
         .html("<em>Incomplete</em>");
+      this.$el.removeClass("libstud");
+      this.$("span.libstud-cat").remove();
     },
 
     toggleHelp: function() {

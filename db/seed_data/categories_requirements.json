@@ -69,8 +69,8 @@
 }, {
   "name": "Liberal Studies",
   "requirements": [{
-    "name": "Liberal Studies 1",
-    "group_name": "Liberal Studies"
+    "name": "Liberal Studies 1 (2000+ level)",
+    "group_name": "Liberal Studies 2000"
   }, {
     "name": "Liberal Studies 2",
     "group_name": "Liberal Studies"

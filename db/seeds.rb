@@ -104,10 +104,15 @@ group_json.each do |group|
   end
 end
 
-# Add a liberal studies group
+# Add liberal studies groups
 puts '-> Adding Liberal Studies'
 ls_group = Group.create(name: 'Liberal Studies')
 ls_group.courses << Course.where("metadata ? 'libstud'")
+ls_2000_group = Group.create(name: 'Liberal Studies 2000')
+ls_2000_group.courses << Course.find_by_sql("SELECT c.* " +
+                                            "FROM courses c, unnest(codes) a " +
+                                            "WHERE a SIMILAR TO '% [2-9]%' " +
+                                            "AND metadata ? 'libstud'")
 
 # Add a FWS group
 puts '-> Adding First-year Writing Seminar'

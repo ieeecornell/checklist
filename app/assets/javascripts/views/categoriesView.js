@@ -115,6 +115,12 @@
         });
       }, this));
 
+      // Display how many categories are filled in the liberal studies category
+      var libstud = this.collection.findWhere({
+        name: "Liberal Studies"
+      });
+      libstud.trigger("displayLSCats");
+
       // Update the UI with the filled requirements
       this.collection.each(_.bind(function(cat) {
         cat.get("requirements").each(_.bind(function(req) {
