@@ -117,13 +117,16 @@
   "name": "ECE Foundation Courses",
   "requirements": [{
     "name": "Foundation Course 1",
-    "group_name": "ECE Foundation Courses"
+    "group_name": "ECE Foundation Courses 3100 and 3250",
+    "description": "ECE majors must take at least three out of five ECE Foundation Courses, including at least one of ECE 3100 and ECE 3250 and at least one of ECE 3030 and ECE 3150."
   }, {
     "name": "Foundation Course 2",
-    "group_name": "ECE Foundation Courses"
+    "group_name": "ECE Foundation Courses 3030 and 3150",
+    "description": "ECE majors must take at least three out of five ECE Foundation Courses, including at least one of ECE 3100 and ECE 3250 and at least one of ECE 3030 and ECE 3150."
   }, {
     "name": "Foundation Course 3",
-    "group_name": "ECE Foundation Courses"
+    "group_name": "ECE Foundation Courses",
+    "description": "ECE majors must take at least three out of five ECE Foundation Courses, including at least one of ECE 3100 and ECE 3250 and at least one of ECE 3030 and ECE 3150."
   }]
 }, {
   "name": "Upper Level ECE Electives",

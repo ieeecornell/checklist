@@ -116,6 +116,18 @@
     "ECE 3400"
   ]
 }, {
+  "name": "ECE Foundation Courses 3100 and 3250",
+  "courses": [
+    "ECE 3100",
+    "ECE 3250"
+  ]
+}, {
+  "name": "ECE Foundation Courses 3030 and 3150",
+  "courses": [
+    "ECE 3030",
+    "ECE 3150"
+  ]
+}, {
   "name": "ECE Foundation Courses",
   "courses": [
     "ECE 3030",
