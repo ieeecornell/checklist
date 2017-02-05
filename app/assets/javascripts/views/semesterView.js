@@ -129,6 +129,9 @@
       // Clear the add button
       $input.val("");
 
+      // Empty the datalist
+      this.$datalist.empty();
+
       // Add the course to the list of courses
       var course = new Course;
       course.on("change", _.bind(function() {
@@ -146,7 +149,7 @@
       var code = $course.find("h3").html();
 
       // Remove the course from the DOM
-      $course.fadeOut(500, function() { $course.remove() });
+      $course.fadeOut(250, function() { $course.remove() });
 
       // Remove the course from the collection to trigger a reevaluation of the
       // requirements

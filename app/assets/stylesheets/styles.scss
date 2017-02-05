@@ -189,6 +189,7 @@ header.main-nav {
             float: right;
             background: $green;
             color: $white;
+            transition: background 0.25s;
         }
 
         ul span.incomplete {
