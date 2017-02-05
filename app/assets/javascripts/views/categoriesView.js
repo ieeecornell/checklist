@@ -83,6 +83,34 @@
         }, this));
       }, this));
 
+      // Try to fill outside technical electives
+      var otes = this.collection.findWhere({
+        name: "Outside-ECE Technical Electives"
+      });
+      otes.get("requirements").each(_.bind(function(req) {
+        // Search for an OTE course
+        this.ecs.each(function(ec) {
+          if (!req.isFilled() && !ec.isFilling() && ec.isOTE()) {
+            ec.setFills(req);
+            req.setFilled(ec);
+          }
+        });
+      }, this));
+
+      // Fill any remaining courses as advisor approved electives
+      var electives = this.collection.findWhere({
+        name: "Advisor Approved Electives"
+      });
+      electives.get("requirements").each(_.bind(function(req) {
+        // Search for a course that hasn't been used to fill anything
+        this.ecs.each(function(ec) {
+          if (!req.isFilled() && !ec.isFilling()) {
+            ec.setFills(req);
+            req.setFilled(ec);
+          }
+        });
+      }, this));
+
       // Update the UI with the filled requirements
       this.collection.each(_.bind(function(cat) {
         cat.get("requirements").each(_.bind(function(req) {

@@ -145,12 +145,12 @@
   "name": "Outside-ECE Technical Electives",
   "requirements": [{
     "name": "Outside Technical Elective 1",
-    "group_name": "Outside Technical Elective"
+    "group_name": "Outside Technical Electives"
   }, {
     "name": "Outside Technical Elective 2",
-    "group_name": "Outside Technical Elective"
+    "group_name": "Outside Technical Electives"
   }, {
     "name": "Outside Technical Elective 3",
-    "group_name": "Outside Technical Elective"
+    "group_name": "Outside Technical Electives"
   }]
 }]

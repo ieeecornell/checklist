@@ -46,6 +46,30 @@
 
     isFilling: function() {
       return !!this.filledWith;
+    },
+
+    /**
+     * Rudimentary check if the course is an OTE. Returns true iff every subject
+     * code is in the engineering school or is a math or science course, and the
+     * course is not listed in the ECE school.
+     */
+    isOTE: function() {
+      var ret = true;
+
+      var allowedSubjects = [
+        "AEP", "AGSCI", "ANSC", "ASTRO", "BEE", "BIOAP", "BIOEE", "BIOG",
+        "BIOMG", "BIOMI", "BIOMS", "BIONB", "BME", "BPRE", "BSOC", "BTRY",
+        "CEE", "CHEM", "CHEME", "COGST", "CS", "EAS", "ENGRD", "ESS", "FDSC",
+        "INFO", "MAE", "MATH", "MSE", "NS", "NSE", "ORIE", "PHYS", "PLBIO",
+        "PLBRG", "PLHRT", "PLPPM", "PLSCI", "PLSCS", "STS", "STSCI", "SYSEN"
+      ];
+
+      _.each(this.get("codes"), function(code) {
+        var subject = code.replace(/\s.*/, "");
+        ret = ret && _.contains(allowedSubjects, subject);
+      });
+
+      return ret;
     }
   });
 

@@ -146,8 +146,7 @@ cr_json.each do |cat|
   cat['requirements'].each do |req|
     # Get the group
     group = Group.where(name: req['group_name']).first
-
-    puts "Group #{req['group_name']} not found" if group.blank?
+    group = Group.create(name: req['group_name']) if group.blank?
 
     # Create the requirement and add it to the category
     db_cat.requirements << Requirement.create(
