@@ -19,6 +19,10 @@
       var reqs = new Requirements(cat.get("requirements"));
       cat.set("requirements", reqs);
 
+      reqs.each(function(req) {
+        req.set("category", cat);
+      });
+
       this.displayCategory(cat);
     },
 

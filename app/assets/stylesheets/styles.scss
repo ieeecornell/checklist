@@ -174,7 +174,7 @@ header.main-nav {
             font-family: sans-serif;
             font-size: 1em;
             font-weight: normal;
-            width: 65%;
+            width: 60%;
             float: left;
         }
 
@@ -187,6 +187,26 @@ header.main-nav {
             border-radius: 16px;
             text-align: center;
             float: right;
+        }
+
+        span.help {
+            cursor: pointer;
+            margin: 6px 0;
+            height: 16px;
+            width: 16px;
+            padding: 6px;
+            line-height: 16px;
+            font-weight: bold;
+            font-size: 12px;
+            border: 2px solid $black;
+
+            &:hover {
+                background: $black;
+                color: $white;
+            }
+        }
+
+        ul span.course {
             background: $green;
             color: $white;
             transition: background 0.25s;
@@ -195,6 +215,37 @@ header.main-nav {
         ul span.incomplete {
             background: $red;
             font-style: italic;
+        }
+
+        .info {
+            clear: both;
+            margin: 12px 12px 0 12px;
+            padding-top: 12px;
+            border-top: 1px solid $medium_light_gray;
+
+            p {
+                margin: 0 0 12px;
+            }
+
+            h4 {
+                margin: 0 0 12px;
+            }
+
+            ul {
+                overflow: hidden;
+                margin: 0 0 6px 0;
+            }
+
+            li {
+                border: 0;
+                float: left;
+                width: 50%;
+                margin: 0 0 6px 0;
+
+                &:nth-child(odd) {
+                    clear: left;
+                }
+            }
         }
     }
 }
