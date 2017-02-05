@@ -15,7 +15,8 @@
     }, {
       "name": "Probability",
       "group_name": "Probability",
-      "description": "An advanced probability course must be taken. ECE 3100 is generally used to fulfill this requirement."
+      "description": "An advanced probability course must be taken. ECE 3100 is generally used to fulfill this requirement.",
+      "allow_crosslisting": true
     }
   ]
 }, {
@@ -40,17 +41,22 @@
     "group_name": "Introduction to Computer Science"
   }, {
     "name": "Advanced Programming/Computer Engineering",
-    "group_name": "Advanced Programming/Computer Engineering"
+    "group_name": "Advanced Programming/Computer Engineering",
+    "allow_crosslisting": true
   }]
 }, {
   "name": "Introduction to Engineering",
+  "requirements": []
+}, {
+  "name": "Engineering Distributions",
   "requirements": [{
     "name": "Introduction to Engineering",
     "group_name": "Introduction to Engineering"
-  }]
-}, {
-  "name": "Engineering Distribution",
-  "requirements": [{
+  }, {
+    "name": "Digital Logic and Computer Organization",
+    "group_name": "Engineering Distribution ECE 2300",
+    "allow_crosslisting": true
+  }, {
     "name": "Engineering Distribution",
     "group_name": "Engineering Distribution"
   }]

@@ -67,6 +67,11 @@
     "ECE 4760"
   ]
 }, {
+  "name": "Engineering Distribution ECE 2300",
+  "courses": [
+    "ECE 2300"
+  ]
+}, {
   "name": "Engineering Distribution",
   "courses": [
     "ENGRD 2110",
@@ -77,11 +82,6 @@
     "ENGRD 2620",
     "ENGRD 2020",
     "ENGRD 2700",
-    "ENGRD 3100",
-    "ENGRD 2100",
-    "ENGRD 2200",
-    "ENGRD 2300",
-    "ENGRD 2640",
     "ENGRD 2190",
     "ENGRD 2210",
     "ENGRD 2250",

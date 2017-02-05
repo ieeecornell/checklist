@@ -1,30 +1,8 @@
 .checklist-container
   ul.checklist
 .courses-container
-  ul.course-list#course-list
-    li.semester.ap-credits
-      h2 AP Credits
-      ul
-        li.add-course
-          a.button(href="#") + Add AP Credit
-    li.semester data-semester="F" data-year="2014"
-      h2 Fall 2014
-      ul
-        li(data-id="1")
-          h3 MATH 1920
-          a.remove href="#" title="Remove" &times;
-        li(data-id="2")
-          h3 PHYS 1112
-          a.remove href="#" title="Remove" &times;
-        li(data-id="3")
-          h3 MEDVL 1101
-          a.remove href="#" title="Remove" &times;
-        li(data-id="4")
-          h3 ENGRI 1820
-          a.remove href="#" title="Remove" &times;
-        li.add-course
-          a.button href="#" + Add Course
-    li.semester.add-semester
+  ul.enrolled-course-list
+    li.add-semester
       h2
         form#add-semester-form
           select#semester
@@ -34,6 +12,3 @@
             option(selected value="F") Fall
           input type="text" id="year" placeholder="Year"
           input type="submit" class="button" value="+ Add"
-
-script#categories-template
-  

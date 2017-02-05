@@ -154,7 +154,8 @@ cr_json.each do |cat|
       display: req['name'],
       sequence: req_seq,
       group_id: group.blank? ? nil : group.id,
-      description: req['description']
+      description: req['description'],
+      allow_crosslisting: req['allow_crosslisting'] || false
     )
     req_seq += 1
   end

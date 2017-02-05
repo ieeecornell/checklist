@@ -17,11 +17,16 @@
 //= require backbone
 //= require models/course
 //= require models/category
+//= require models/group
 //= require models/requirement
 //= require collections/categories
+//= require collections/groups
 //= require collections/requirements
+//= require collections/enrolledCourses
 //= require views/requirementView
 //= require views/requirementsView
 //= require views/categoryView
 //= require views/categoriesView
+//= require views/semesterView
+//= require views/enrolledCoursesView
 //= require app

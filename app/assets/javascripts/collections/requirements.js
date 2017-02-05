@@ -1,7 +1,6 @@
 (function() {
   var Requirements = Backbone.Collection.extend({
-    model: Requirement,
-    url: "/requirements"
+    model: Requirement
   });
 
   window.Requirements = Requirements;

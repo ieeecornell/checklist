@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170203032323) do
+ActiveRecord::Schema.define(version: 20170205024006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20170203032323) do
     t.integer "group_id"
     t.text    "description"
     t.integer "category_id"
+    t.boolean "allow_crosslisting", default: false
     t.index ["category_id"], name: "index_requirements_on_category_id", using: :btree
   end
 

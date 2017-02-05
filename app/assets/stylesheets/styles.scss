@@ -199,9 +199,9 @@ header.main-nav {
 }
 
 // -----------------------------------------------------------------------------
-// Courses
+// Enrolled courses
 // -----------------------------------------------------------------------------
-.course-list {
+.enrolled-course-list {
     padding: 0;
     margin: 0;
 
@@ -210,7 +210,8 @@ header.main-nav {
 
     }
 
-    .semester {
+    .semester,
+    .add-semester {
         h2 {
             background: $medium_light_gray;
             margin: 0 0 16px;
@@ -324,6 +325,45 @@ header.main-nav {
 
         a.button {
             padding: 8px;
+        }
+
+        .add-course {
+            cursor: pointer;
+
+            &.editing:hover {
+                cursor: text;
+                background: $blue;
+            }
+
+            &:hover {
+                background: darken($blue, 10%);
+            }
+
+            span.label {
+                float: left;
+                padding: 8px;
+            }
+
+            span.plus {
+                float: right;
+                padding: 8px;
+                border-left: 1px solid darken($blue, 10%);
+                cursor: pointer;
+            }
+
+            &.editing span.plus:hover {
+                background: darken($blue, 10%);
+            }
+
+            input[type="text"] {
+                width: 120px;
+                background: transparent;
+                display: inline-block;
+                border: 0;
+                padding: 0;
+                color: #fff;
+                font-weight: bold;
+            }
         }
     }
 }

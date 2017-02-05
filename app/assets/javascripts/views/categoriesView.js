@@ -6,8 +6,20 @@
      * Renders the categories.
      */
     render: function() {
-      this.collection.on("add", this.displayCategory, this);
+      this.collection.on("add", this.addCategory, this);
       this.collection.fetch();
+    },
+
+    /**
+     * Displays the category in the UI and parses the requirements into a
+     * collection.
+     * @param cat The category that was added
+     */
+    addCategory: function(cat) {
+      var reqs = new Requirements(cat.get("requirements"));
+      cat.set("requirements", reqs);
+
+      this.displayCategory(cat);
     },
 
     /**
@@ -17,6 +29,66 @@
     displayCategory: function(cat) {
       var catView = new CategoryView({model: cat});
       this.$el.append(catView.render());
+    },
+
+    /**
+     * Sets the enrolled courses that the categories are fulfilled by.
+     * @param ecs The enrolled courses
+     */
+    setEnrolledCourses: function(ecs) {
+      this.ecs = ecs;
+      this.ecs.on("update", _.bind(this.fillRequirements, this));
+    },
+
+    /**
+     * Fills all of the requirements with the available enrolled courses.
+     */
+    fillRequirements: function() {
+      // Try to fill any requirements that can be filled
+      this.collection.each(_.bind(function(cat) {
+        cat.get("requirements").each(_.bind(function(req) {
+          // Assume the requirement has not been filled unless a suitable course
+          // is found
+          req.unsetFilled();
+
+          this.ecs.each(function(ec) {
+            // Don't do anything if this course is being used to fill another
+            // requirement, and this requirement does not allow crosslisting
+            if (ec.isFilling() && !req.get("allow_crosslisting")) return;
+
+            // Don't do anything if this requirement has already been filled
+            if (req.isFilled()) return;
+
+            // Check if this course fills this requirement
+            var fills = ec.get("groups").some(function(group) {
+              return group.id == req.get("group_id");
+            });
+
+            if (fills) {
+              // Mark that this requirement is filled
+              req.setFilled(ec);
+
+              // Mark that this course is being used to fill this requirement,
+              // unless this requirement allows courses to be crosslisted
+              if (!req.get("allow_crosslisting")) {
+                ec.setFills(req);
+              }
+            }
+          });
+        }, this));
+      }, this));
+
+      // Update the UI with the filled requirements
+      this.collection.each(_.bind(function(cat) {
+        cat.get("requirements").each(_.bind(function(req) {
+          if (req.isFilled()) {
+            req.trigger("fill", req.getFilled());
+          }
+          else {
+            req.trigger("unfill");
+          }
+        }, this));
+      }, this));
     }
   });
 

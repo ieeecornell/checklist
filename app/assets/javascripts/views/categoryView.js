@@ -4,7 +4,7 @@
     className: "category",
 
     render: function() {
-      var reqs = new Requirements(this.model.get("requirements"));
+      var reqs = this.model.get("requirements");
       var reqsView = new RequirementsView({collection: reqs});
 
       return this.$el
