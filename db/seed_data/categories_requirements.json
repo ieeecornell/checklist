@@ -91,10 +91,12 @@
   "name": "Advisor Approved Electives",
   "requirements": [{
     "name": "Approved Elective 1",
-    "group_name": "Advisor Approved Electives"
+    "group_name": "Advisor Approved Electives",
+    "description": "Advisor Approved Electives that are generally accepted by advisors include: one extra introduction to engineering course, engineering distribution courses, courses stressing oral or written communication, upper-level engineering courses, advanced mathematics, biological, and physical science courses. Selected business, economics, humanities, social science, and language courses are often acceptable depending on your career goals. Again, the courses you present to your advisor for approval must be sound choices that address your overall career or educational objectives."
   }, {
     "name": "Approved Elective 2",
-    "group_name": "Advisor Approved Electives"
+    "group_name": "Advisor Approved Electives",
+    "description": "Advisor Approved Electives that are generally accepted by advisors include: one extra introduction to engineering course, engineering distribution courses, courses stressing oral or written communication, upper-level engineering courses, advanced mathematics, biological, and physical science courses. Selected business, economics, humanities, social science, and language courses are often acceptable depending on your career goals. Again, the courses you present to your advisor for approval must be sound choices that address your overall career or educational objectives."
   }]
 }, {
   "name": "ECE Core Courses",
@@ -145,12 +147,15 @@
   "name": "Outside-ECE Technical Electives",
   "requirements": [{
     "name": "Outside Technical Elective 1",
-    "group_name": "Outside Technical Electives"
+    "group_name": "Outside Technical Electives",
+    "description": "Courses allowed in this category must be technical courses whose technical scope lies outside the course offerings of the School of Electrical and Computer Engineering. Almost any non-ECE math, science, or engineering course at the 2000-level or above will do. A student may count a 1000-level course as an Outside-ECE Technical Elective only if the course lists an explicit university-level prerequisite that the student has completed successfully either at Cornell or through AP or transfer credit. For example, none of the ENGRIs is acceptable since none of them has any prerequisities. Non-technical courses such as ENGRC and pure business courses are also not acceptable. ECE majors may, however, count ECE 5830 --- Introduction to Technical Management --- as an Outside-ECE Technical Elective."
   }, {
     "name": "Outside Technical Elective 2",
-    "group_name": "Outside Technical Electives"
+    "group_name": "Outside Technical Electives",
+    "description": "Courses allowed in this category must be technical courses whose technical scope lies outside the course offerings of the School of Electrical and Computer Engineering. Almost any non-ECE math, science, or engineering course at the 2000-level or above will do. A student may count a 1000-level course as an Outside-ECE Technical Elective only if the course lists an explicit university-level prerequisite that the student has completed successfully either at Cornell or through AP or transfer credit. For example, none of the ENGRIs is acceptable since none of them has any prerequisities. Non-technical courses such as ENGRC and pure business courses are also not acceptable. ECE majors may, however, count ECE 5830 --- Introduction to Technical Management --- as an Outside-ECE Technical Elective."
   }, {
     "name": "Outside Technical Elective 3",
-    "group_name": "Outside Technical Electives"
+    "group_name": "Outside Technical Electives",
+    "description": "Courses allowed in this category must be technical courses whose technical scope lies outside the course offerings of the School of Electrical and Computer Engineering. Almost any non-ECE math, science, or engineering course at the 2000-level or above will do. A student may count a 1000-level course as an Outside-ECE Technical Elective only if the course lists an explicit university-level prerequisite that the student has completed successfully either at Cornell or through AP or transfer credit. For example, none of the ENGRIs is acceptable since none of them has any prerequisities. Non-technical courses such as ENGRC and pure business courses are also not acceptable. ECE majors may, however, count ECE 5830 --- Introduction to Technical Management --- as an Outside-ECE Technical Elective."
   }]
 }]

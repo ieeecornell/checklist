@@ -82,6 +82,11 @@
     },
 
     fillInfoList: function() {
+      if (this.model.get("courses").length == 0) {
+        this.$(".info").find("ul, h4").remove();
+        return;
+      }
+
       // Get the lower and upper bounds of the indices of the courses to display
       var lower = this.infoListPage * COURSES_PER_PAGE;
       var upper = lower + COURSES_PER_PAGE > this.model.get("courses").length ?
