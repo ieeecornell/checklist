@@ -6,7 +6,8 @@
     events: {
       "click .add-course span.plus": "addCourse",
       "keyup .add-course input": "autocomplete",
-      "click a.remove": "removeCourse"
+      "click a.remove": "removeCourse",
+      "click a.remove-semester": "removeSemester"
     },
 
     initialize: function(opts) {
@@ -26,6 +27,7 @@
       this.$el.append(
         "<h2>" +
           this.getSemesterDisplay(this.semester) + " " + this.year +
+          "<a href='#' class='remove-semester' title='Remove'>&times;</a>" +
         "</h2>" +
         "<ul>" +
           "<li class='add-course editing'>" +
@@ -154,6 +156,20 @@
       // Remove the course from the collection to trigger a reevaluation of the
       // requirements
       this.collection.remove(this.collection.findByCode(code));
+    },
+
+    removeSemester: function(e) {
+      // Don't follow the link
+      e.preventDefault();
+
+      // Clear all of the courses that are in this semester
+      this.$("li:not(.add-course)").each(_.bind(function(_i, li) {
+        var code = $(li).find("h3").html();
+        this.collection.remove(this.collection.findByCode(code));
+      }, this));
+
+      // Remove this element
+      this.$el.remove();
     }
   });
 

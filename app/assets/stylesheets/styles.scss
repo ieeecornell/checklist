@@ -217,6 +217,7 @@ header.main-nav {
             background: $medium_light_gray;
             margin: 0 0 16px;
             padding: 8px 10%;
+            line-height: 30px;
 
             form {
                 @extend .cf;
@@ -253,6 +254,7 @@ header.main-nav {
                 height: 30px;
                 line-height: 30px;
                 margin-left: 10px;
+                padding: 0 6px;
                 border: 0;
                 background: $medium_dark_gray;
                 color: $white;
@@ -264,6 +266,18 @@ header.main-nav {
 
                 &:hover {
                     background: darken($medium_dark_gray, 10%);
+                }
+            }
+
+            a.remove-semester {
+                float: none;
+                display: inline-block;
+                margin-left: 10px;
+                color: $medium_dark_gray;
+
+                &:hover {
+                    color: lighten($medium_dark_gray, 10%);
+                    background: transparent;
                 }
             }
 
