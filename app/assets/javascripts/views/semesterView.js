@@ -169,7 +169,7 @@
       }, this));
 
       // Remove this element
-      this.$el.remove();
+      this.$el.fadeOut(250, _.bind(function() { this.$el.remove(); }, this));
     }
   });
 
