@@ -16,14 +16,14 @@
         url: "/courses/" + encodeURIComponent(code) + ".json"
       }).done(_.bind(function(data) {
         if (data.length == 0) {
-          this.set({codes: [code]});
+          this.set({codes: [code], groups: []});
         }
         else {
           data.code = code;
           this.set(data);
         }
       }, this)).fail(_.bind(function() {
-        this.set({codes: [code]});
+        this.set({codes: [code], groups: []});
       }, this));
     },
 
