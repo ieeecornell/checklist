@@ -3,10 +3,57 @@
     el: "ul.enrolled-course-list",
 
     events: {
-      "submit #add-semester-form": "addSemester"
+      "submit #add-semester-form": "formAddSemester"
     },
 
-    addSemester: function(e) {
+    initialize: function() {
+      this.collection.on("add", this.addCourse, this);
+      this.semesters = [];
+    },
+
+    addCourse: function(course) {
+      // Find the semester that this course is in
+      var semester = _.find(this.semesters, function(semester) {
+        return semester.getSemester() == course.get("semester") &&
+          semester.getYear() == course.get("year");
+      });
+
+      // If the semester does not exist, create it
+      if (!semester) {
+        semester = this.addSemester(course.get("semester"), course.get("year"));
+      }
+
+      // Add the course to the semester UI
+      semester.addCourse(course);
+    },
+
+    addSemester: function(semester, year) {
+      // Create a form for this semester
+      var semesterForm = new SemesterView({
+        collection: this.collection,
+        semester: semester,
+        year: year
+      });
+
+      // Insert the form in the correct place
+      var $semesters = this.$el.find(".semester");
+      var $newForm = semesterForm.render();
+      var $beforeForm = this.$el.find(".add-semester");
+      $semesters.each(_.bind(function (_i, oldForm) {
+        var $oldForm = $(oldForm);
+
+        if (this.semComesBefore($newForm, $oldForm)) {
+          $beforeForm = $oldForm;
+          return false;
+        }
+      }, this));
+      $beforeForm.before($newForm);
+
+      this.semesters.push(semesterForm);
+      return semesterForm;
+    },
+
+    formAddSemester: function(e) {
       // Don't actually submit the form
       e.preventDefault();
 
@@ -31,26 +78,8 @@
         return;
       }
 
-      // Create a form for this semester
-      var semesterForm = new SemesterView({
-        collection: this.collection,
-        semester: semester,
-        year: year
-      });
-
-      // Insert the form in the correct place
-      var $semesters = this.$el.find(".semester");
-      var $newForm = semesterForm.render();
-      var $beforeForm = this.$el.find(".add-semester");
-      $semesters.each(_.bind(function (_i, oldForm) {
-        var $oldForm = $(oldForm);
-
-        if (this.semComesBefore($newForm, $oldForm)) {
-          $beforeForm = $oldForm;
-          return false;
-        }
-      }, this));
-      $beforeForm.before($newForm);
+      // Add the semester
+      this.addSemester(semester, year);
 
       // Clear the year input
       $("#year").val("");

@@ -4,7 +4,7 @@
     className: "semester",
 
     events: {
-      "click .add-course span.plus": "addCourse",
+      "click .add-course span.plus": "formAddCourse",
       "keyup .add-course input": "autocomplete",
       "click a.remove": "removeCourse",
       "click a.remove-semester": "removeSemester"
@@ -62,11 +62,19 @@
       return this.semesterMap[semester];
     },
 
+    getSemester: function() {
+      return this.semester;
+    },
+
+    getYear: function() {
+      return this.year;
+    },
+
     autocomplete: function(e) {
       // Add the course if enter is pressed
       if (e.which == 13) {
         e.preventDefault();
-        this.addCourse();
+        this.formAddCourse();
         return;
       }
 
@@ -105,7 +113,7 @@
       }, this));
     },
 
-    addCourse: function() {
+    formAddCourse: function() {
       // Get the course code
       var $addButton = this.$el.find(".add-course");
       var $input = $addButton.find("input");
@@ -120,10 +128,23 @@
         return;
       }
 
+      // Add the course to the list of courses
+      var course = new Course;
+      course.on("change", _.bind(function() {
+        course.set("semester", this.semester);
+        course.set("year", this.year);
+        this.collection.add(course);
+      }, this));
+      course.fetchByCode(code);
+    },
+
+    addCourse: function(course) {
       // Add a list element with this course
+      var $addButton = this.$(".add-course");
+      var $input = $addButton.find("input");
       $addButton.before(
         "<li>" +
-          "<h3>" + code + "</h3>" +
+          "<h3>" + course.get("code") + "</h3>" +
           "<a class='remove' href='#' title='Remove'>&times;</a>" +
         "</li>"
       );
@@ -133,13 +154,6 @@
 
       // Empty the datalist
       this.$datalist.empty();
-
-      // Add the course to the list of courses
-      var course = new Course;
-      course.on("change", _.bind(function() {
-        this.collection.add(course);
-      }, this));
-      course.fetchByCode(code);
     },
 
     removeCourse: function(e) {
