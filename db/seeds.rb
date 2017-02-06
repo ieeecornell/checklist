@@ -1,82 +1,82 @@
-# # ------------------------------------------------------------------------------
-# # Get all of the courses from Cornell's website
-# # ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# Get all of the courses from Cornell's website
+# ------------------------------------------------------------------------------
 
-# # Drop all current courses
-# Course.destroy_all
+# Drop all current courses
+Course.destroy_all
 
-# url_base = 'https://classes.cornell.edu/browse/roster'
-# semesters = ['FA14', 'SP15', 'FA15', 'SP16', 'FA16', 'SP17']
+url_base = 'https://classes.cornell.edu/browse/roster'
+semesters = ['FA14', 'SP15', 'FA15', 'SP16', 'FA16', 'SP17']
 
-# # Get the classes for each semester
-# semesters.each do |semester|
-#   # Get all of the subject codes
-#   puts "-----------------------------------------------"
-#   puts "Fetching subject codes for semester #{semester}"
-#   puts "-----------------------------------------------"
-#   page = HTTParty.get("#{url_base}/#{semester}")
-#   parsed_page = Nokogiri::HTML(page)
+# Get the classes for each semester
+semesters.each do |semester|
+  # Get all of the subject codes
+  puts "-----------------------------------------------"
+  puts "Fetching subject codes for semester #{semester}"
+  puts "-----------------------------------------------"
+  page = HTTParty.get("#{url_base}/#{semester}")
+  parsed_page = Nokogiri::HTML(page)
 
-#   # Get all of the courses for each subject
-#   parsed_page.css('.subject-group').each do |ul|
-#     subject = ul.css('.browse-subjectcode').text
+  # Get all of the courses for each subject
+  parsed_page.css('.subject-group').each do |ul|
+    subject = ul.css('.browse-subjectcode').text
 
-#     puts "-> Getting courses for #{subject}"
-#     subject_page = HTTParty.get("#{url_base}/#{semester}/subject/#{subject}")
-#     parsed_subject_page = Nokogiri::HTML(subject_page)
+    puts "-> Getting courses for #{subject}"
+    subject_page = HTTParty.get("#{url_base}/#{semester}/subject/#{subject}")
+    parsed_subject_page = Nokogiri::HTML(subject_page)
 
-#     parsed_subject_page.css(".node[data-subject='#{subject}']").each do |node|
-#       course_codes = [node.css('.title-subjectcode').text]
-#       title = node.css('.title-coursedescr').text
-#       credits = (node.css('.credits strong')[0].text || '').gsub(/[^0-9].$/, '')
-#       course_codes.concat node.css(".enroll-info a[href^='/browse/roster/']")
-#                               .map { |a| a.text }
+    parsed_subject_page.css(".node[data-subject='#{subject}']").each do |node|
+      course_codes = [node.css('.title-subjectcode').text]
+      title = node.css('.title-coursedescr').text
+      credits = (node.css('.credits strong')[0].text || '').gsub(/[^0-9].$/, '')
+      course_codes.concat node.css(".enroll-info a[href^='/browse/roster/']")
+                              .map { |a| a.text }
 
-#       next if Course.where("'#{course_codes.first}' = ANY(codes)").count > 0
+      next if Course.where("'#{course_codes.first}' = ANY(codes)").count > 0
 
-#       Course.create(codes: course_codes, credits: credits, title: title)
-#     end
-#   end
-# end
+      Course.create(codes: course_codes, credits: credits, title: title)
+    end
+  end
+end
 
-# # ------------------------------------------------------------------------------
-# # Get all of the liberal studies
-# # ------------------------------------------------------------------------------
-# ls_url_base = 'https://www.engineering.cornell.edu/apps/liberalstudies'
-# ls_categories = ['CA', 'HA', 'KCM', 'LA', 'SBA', 'CE']
+# ------------------------------------------------------------------------------
+# Get all of the liberal studies
+# ------------------------------------------------------------------------------
+ls_url_base = 'https://www.engineering.cornell.edu/apps/liberalstudies'
+ls_categories = ['CA', 'HA', 'KCM', 'LA', 'SBA', 'CE']
 
-# puts '------------------------'
-# puts 'Fetching liberal studies'
-# puts '------------------------'
+puts '------------------------'
+puts 'Fetching liberal studies'
+puts '------------------------'
 
-# # Get all of the courses in each of the categories
-# ls_categories.each do |cat|
-#   puts "-> Fetching courses in category #{cat}"
+# Get all of the courses in each of the categories
+ls_categories.each do |cat|
+  puts "-> Fetching courses in category #{cat}"
 
-#   page = HTTParty.get("#{ls_url_base}/#{cat}.cfm")
-#   parsed_page = Nokogiri::HTML(page)
+  page = HTTParty.get("#{ls_url_base}/#{cat}.cfm")
+  parsed_page = Nokogiri::HTML(page)
 
-#   courses_count = 0
-#   not_found_count = 0
-#   parsed_page.css('#content table tr').each do |tr|
-#     next if tr.css('td').blank?
+  courses_count = 0
+  not_found_count = 0
+  parsed_page.css('#content table tr').each do |tr|
+    next if tr.css('td').blank?
 
-#     subject_code = tr.css('td')[0].text
-#     course_number = tr.css('td')[1].text
+    subject_code = tr.css('td')[0].text
+    course_number = tr.css('td')[1].text
 
-#     code = "#{subject_code} #{course_number}"
-#     course = Course.where("'#{code}' = ANY(codes)").first
+    code = "#{subject_code} #{course_number}"
+    course = Course.where("'#{code}' = ANY(codes)").first
 
-#     if course.blank?
-#       not_found_count += 1
-#     else
-#       course.update_attribute(:metadata, {libstud: cat})
-#     end
+    if course.blank?
+      not_found_count += 1
+    else
+      course.update_attribute(:metadata, {libstud: cat})
+    end
 
-#     courses_count += 1
-#   end
-#   puts "Found #{courses_count - not_found_count}/#{courses_count} courses"
-# end
+    courses_count += 1
+  end
+  puts "Found #{courses_count - not_found_count}/#{courses_count} courses"
+end
 
 # ------------------------------------------------------------------------------
 # Add all of the groups
