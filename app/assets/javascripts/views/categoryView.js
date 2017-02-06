@@ -3,6 +3,10 @@
     tagName: "li",
     className: "category",
 
+    events: {
+      "click h2": "toggleCategoryView"
+    },
+
     initialize: function() {
       this.model.on("displayLSCats", this.displayLSCats, this);
     },
@@ -14,7 +18,10 @@
       // Add in the category title and requirements
       this.$el
         .append(
-          "<h2><span class='title'>" + this.model.get("name") + "</span></h2>"
+          "<h2>" +
+            "<span class='arrow' />" +
+            "<span class='title'>" + this.model.get("name") + "</span>" +
+          "</h2>"
         )
         .append(reqsView.render());
 
@@ -48,6 +55,10 @@
         this.$("span.status").removeClass("incomplete").addClass("complete")
           .html(libstudCatsFilled + "/3 categories");
       }
+    },
+
+    toggleCategoryView: function() {
+      this.$el.toggleClass("open");
     }
   });
 

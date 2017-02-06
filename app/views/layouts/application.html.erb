@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ECE Checklist | Cornell IEEE</title>
     <%= csrf_meta_tags %>
 
@@ -16,6 +18,7 @@
           <a href="http://ieeecornell.org">Back to Cornell IEEE &rarr;</a>
         </nav>
       </div>
+    </header>
     <%= yield %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </body>
