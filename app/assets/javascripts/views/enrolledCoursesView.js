@@ -8,6 +8,7 @@
 
     initialize: function() {
       this.collection.on("add", this.addCourse, this);
+      this.on("semester:add semester:remove", this.showHelpText, this);
       this.semesters = [];
     },
 
@@ -32,7 +33,8 @@
       var semesterForm = new SemesterView({
         collection: this.collection,
         semester: semester,
-        year: year
+        year: year,
+        parentView: this
       });
 
       // Insert the form in the correct place
@@ -50,6 +52,9 @@
       $beforeForm.before($newForm);
 
       this.semesters.push(semesterForm);
+
+      this.trigger("semester:add");
+
       return semesterForm;
     },
 
@@ -136,6 +141,28 @@
         year1 == year2 ?
           semesterCodes[semester1] < semesterCodes[semester2] :
           false;
+    },
+
+    render: function() {
+      this.showHelpText();
+    },
+
+    /**
+     * Shows help text when there are no enrolled courses or semesters.
+     */
+    showHelpText: function() {
+      var $coursesContainer = $(".courses-container");
+
+      if (this.$("li.semester").length > 0) {
+        $coursesContainer.find(".help-text").remove();
+      }
+      else {
+        $coursesContainer.append(
+          "<div class='help-text'>" +
+            "Add a semester to begin adding courses." +
+          "</div>"
+        );
+      }
     }
   });
 

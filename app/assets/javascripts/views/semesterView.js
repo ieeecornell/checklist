@@ -13,6 +13,7 @@
     initialize: function(opts) {
       this.semester = opts.semester;
       this.year = opts.year;
+      this.parentView = opts.parentView;
     },
 
     render: function() {
@@ -186,7 +187,12 @@
       }, this));
 
       // Remove this element
-      this.$el.fadeOut(250, _.bind(function() { this.$el.remove(); }, this));
+      this.$el.fadeOut(250, _.bind(function() {
+        this.$el.remove();
+
+        // Trigger a semester remove event
+        this.parentView.trigger("semester:remove");
+      }, this));
     }
   });
 
