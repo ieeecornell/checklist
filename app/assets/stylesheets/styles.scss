@@ -290,6 +290,8 @@ header.main-nav {
             input {
                 font-family: 'Bitter', serif;
                 font-weight: bold;
+                border-radius: 0;
+                box-sizing: border-box;
             }
 
             select {
@@ -303,8 +305,8 @@ header.main-nav {
             }
 
             input[type='text'] {
-                height: 27px;
-                line-height: 27px;
+                height: 30px;
+                line-height: 30px;
                 width: 80px;
                 margin-left: 10px;
                 background: transparent;
@@ -485,15 +487,21 @@ header.main-nav {
 
             span.arrow {
                 display: inline-block;
-                height: 30px;
-                line-height: 30px;
-                float: left;
+                position: absolute;
+                top: 0;
+                left: 0;
                 font-size: 14px;
-                margin-right: 5px;
 
                 &:before {
-                    content: "▶";
+                    content: "\25BA \FE0E";
                 }
+            }
+
+            span.title {
+                height: auto;
+                line-height: 30px;
+                padding-left: 20px;
+                position: relative;
             }
 
             span.status {
@@ -507,7 +515,7 @@ header.main-nav {
 
         & .open {
             h2 span.arrow:before {
-                content: "▼";
+                content: "\25BC \FE0E";
             }
 
             h2 span.status {
@@ -524,6 +532,7 @@ header.main-nav {
                 float: left;
                 width: 100%;
                 padding: 6px 6px 0 6px;
+                box-sizing: border-box;
             }
 
             span.course,

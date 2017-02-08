@@ -19,8 +19,10 @@
       this.$el
         .append(
           "<h2>" +
-            "<span class='arrow' />" +
-            "<span class='title'>" + this.model.get("name") + "</span>" +
+            "<span class='title'>" +
+              "<span class='arrow' />" +
+              this.model.get("name") +
+            "</span>" +
           "</h2>"
         )
         .append(reqsView.render());

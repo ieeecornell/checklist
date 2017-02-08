@@ -33,7 +33,8 @@
           "<li class='add-course editing'>" +
             "<span class='label'>" +
               "<input type='text' placeholder='Add Course...' list='" +
-                dlId + "'>" +
+                dlId + "' autocorrect='off' autocomplete='off'" +
+                " autocapitalize='off' spellcheck='false'>" +
               "<datalist id='" + dlId + "' />" +
             "</span>" +
             "<span class='plus'>+</span>" +
