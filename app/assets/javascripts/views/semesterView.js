@@ -108,7 +108,7 @@
           });
 
           this.$datalist.append(
-            "<option>" + code + "</option>"
+            "<option value='" + code + "'>" + code + ": " + result.title + "</option>"
           );
         }, this);
       }, this));
