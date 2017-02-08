@@ -11,7 +11,7 @@
       this.on("change:groups", this.parseGroups);
     },
 
-    fetchByCode: function(code) {
+    fetchByCode: function(code, err) {
       $.ajax({
         url: "/courses/" + encodeURIComponent(code) + ".json"
       }).done(_.bind(function(data) {
@@ -23,7 +23,7 @@
           this.set(data);
         }
       }, this)).fail(_.bind(function() {
-        this.set({codes: [code], groups: []});
+        (err || function() {}).call(this);
       }, this));
     },
 

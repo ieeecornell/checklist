@@ -136,7 +136,9 @@
         course.set("year", this.year);
         this.collection.add(course);
       }, this));
-      course.fetchByCode(code);
+      course.fetchByCode(code, function() {
+        alert("Could not find course " + code);
+      });
     },
 
     addCourse: function(course) {
