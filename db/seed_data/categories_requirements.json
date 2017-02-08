@@ -88,6 +88,15 @@
     "group_name": "Liberal Studies"
   }]
 }, {
+  "name": "Physical Education",
+  "requirements": [{
+    "name": "Physical Education 1",
+    "group_name": "Physical Education"
+  }, {
+    "name": "Physical Education 2",
+    "group_name": "Physical Education"
+  }]
+}, {
   "name": "Advisor Approved Electives",
   "requirements": [{
     "name": "Approved Elective 1",
