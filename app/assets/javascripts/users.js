@@ -1,3 +1,18 @@
+//= require models/course
+//= require models/category
+//= require models/group
+//= require models/requirement
+//= require collections/categories
+//= require collections/groups
+//= require collections/requirements
+//= require collections/courses
+//= require views/users/requirementView
+//= require views/users/requirementsView
+//= require views/users/categoryView
+//= require views/users/categoriesView
+//= require views/users/semesterView
+//= require views/users/enrolledCoursesView
+
 (function() {
     // Display the categories and requirements
     var cats = new Categories;
@@ -5,7 +20,7 @@
     catsView.render();
 
     // Display the enrolled courses form
-    var ecs = new EnrolledCourses;
+    var ecs = new courses;
     var ecsView = new EnrolledCoursesView({collection: ecs});
     ecsView.render();
 
@@ -22,3 +37,4 @@
         ecs.set(JSON.parse(localStorage.getItem("courses")));
     });
 })();
+

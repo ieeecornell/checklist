@@ -1,5 +1,5 @@
 (function() {
-  var EnrolledCourses = Backbone.Collection.extend({
+  var Courses = Backbone.Collection.extend({
     model: Course,
 
     findByCode: function(code) {
@@ -9,5 +9,5 @@
     }
   });
 
-  window.EnrolledCourses = EnrolledCourses;
+  window.Courses = Courses;
 })();

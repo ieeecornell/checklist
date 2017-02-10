@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :show] do
     resources :requirements, only: [:index, :show]
   end
+
+  get '/admin', to: 'admin#show'
 end
