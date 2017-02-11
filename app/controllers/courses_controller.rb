@@ -39,6 +39,14 @@ class CoursesController < ApplicationController
     end
   end
 
+  def create
+    course = Course.create(course_params)
+
+    respond_to do |format|
+      format.json { render json: course, status: :ok }
+    end
+  end
+
   def show
     course = begin
                Course.find(params[:id])
@@ -55,5 +63,23 @@ class CoursesController < ApplicationController
         end
       end
     end
+  end
+
+  def update
+    course = Course.find(params[:id])
+    course.update(course_params)
+    course.save
+  end
+
+  def destroy
+    Course.find(params[:id]).destroy
+  end
+
+  private
+
+  def course_params
+    params.require(:course).permit(
+      :title, :credits, :metadata => {}, :codes => []
+    )
   end
 end

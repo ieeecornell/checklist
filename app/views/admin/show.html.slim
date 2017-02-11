@@ -6,3 +6,49 @@ aside.sidebar-nav
       a href="#" data-view="groups" Groups
     li
       a href="#" data-view="cats" Categories
+script type="text/html" id="course-template"
+  <div class="modal-bg" />
+  <div class="modal-fg">
+    <header>
+      <input type="text" class="title" value="<%- data.title %>" placeholder="Title">
+    </header>
+    <section>
+      <dl>
+        <dt>Course Codes</dt>
+          <dd>
+            <ul class="codes">
+              <% _.each(data.codes, function(code) { %>
+                <li>
+                  <input type="text" class="code" value="<%- code %>">
+                  <a href="#" class="delete delete-code">&times;</a>
+                </li>
+              <% }); %>
+            </ul>
+            <a href="#" class="add-code">+ Add code</a>
+          </dd>
+        <dt>Credits</dt>
+          <dd>
+            <input type="text" class="credits" value="<%- data.credits %>">
+          </dd>
+        <dt>Metadata</dt>
+          <dd>
+            <ul class="key-value metadata">
+              <% _.each(data.metadata, function(value, key) { %>
+                <li>
+                  <input type="text" class="key" value="<%- key %>">
+                  <input type="text" class="value" value="<%- value %>">
+                  <a href="#" class="delete delete-metadata">&times;</a>
+                </li>
+              <% }); %>
+            </ul>
+            <a href="#" class="add-metadata">+ Add metadata</a>
+          </dd>
+    </section>
+    <footer>
+      <div class="btn-group">
+        <a href="#" class="btn btn-positive save-course">Save</a>
+        <a href="#" class="btn btn-negative close-course">Close</a>
+        <a href="#" class="btn btn-negative pull-right delete-course">Delete</a>
+      </div>
+    </footer>
+  </div>

@@ -2,7 +2,8 @@
   var Course = Backbone.Model.extend({
     urlRoot: "/courses",
     url: function() {
-      return this.urlRoot + "/" + this.get("id") + ".json";
+      return this.urlRoot + (!this.isNew() ? "/" + this.get("id") : "") +
+        ".json";
     },
 
     initialize: function() {

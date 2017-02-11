@@ -8,7 +8,9 @@
     events: {
       "keyup .search input": "searchCourses",
       "click .prev-page": "prevPage",
-      "click .next-page": "nextPage"
+      "click .next-page": "nextPage",
+      "click .courses-list tr": "showCourse",
+      "click .create-course": "createCourse"
     },
 
     initialize: function() {
@@ -33,7 +35,8 @@
           "<div class='paging'>" +
             "<a href='#' class='disabled next-page'>Next &rarr;</a>" +
             "<a href='#' class='disabled prev-page'>&larr; Prev</a>" +
-            "<a href='#' class='add-course'>Add Course</a>" +
+            "<a href='#' class='btn btn-positive create-course'>" +
+              "Add Course</a>" +
           "</div>" +
         "</div>"
       );
@@ -48,8 +51,7 @@
               "<th>Credits</th>" +
             "</tr>" +
           "</thead>" +
-          "<tbody class='linked courses-list'>" +
-          "</tbody>" +
+          "<tbody class='linked courses-list' />" +
         "</table>"
       );
       this.$coursesList = this.$(".courses-list");
@@ -83,12 +85,16 @@
 
     searchCourses: function(e) {
       // Get the search term
-      this.searchTerm = e.target.value.trim();
+      var newTerm = e.target.value.trim();
+
+      // Do nothing if the search term hasn't changed
+      if (newTerm == this.searchTerm) return;
 
       // Go back to the first page
       this.page = 0;
 
       // Update the courses list
+      this.searchTerm = newTerm;
       this.loadCourses();
     },
 
@@ -100,10 +106,22 @@
           "<td>" + course.get("credits") + "</td>" +
         "</tr>"
       );
+
+      course.on("change", this.updateCourse, this);
     },
 
     removeCourse: function(course) {
       this.$coursesList.find("[data-id='" + course.get("id") + "']").remove();
+    },
+
+    updateCourse: function(course) {
+      var $tr = this.$("tr[data-id='" + course.get("id") + "']");
+
+      $tr.html(
+          "<td>" + course.get("codes").join("/") + "</td>" +
+          "<td>" + course.get("title") + "</td>" +
+          "<td>" + course.get("credits") + "</td>"
+      );
     },
 
     /**
@@ -155,6 +173,29 @@
       else {
         this.$(".next-page").addClass("disabled");
       }
+    },
+
+    showCourse: function(e) {
+      // Get the course ID
+      var $tr = $(e.target).closest("tr");
+      var id = Number($tr.attr("data-id"));
+
+      // Create a course model
+      var course = this.collection.findWhere({id: id});
+
+      // Display the course
+      new CourseView({
+        model: course
+      });
+    },
+
+    createCourse: function(e) {
+      e.preventDefault();
+
+      // Display the create course view
+      new CourseView({
+        model: new Course
+      });
     }
   });
 
