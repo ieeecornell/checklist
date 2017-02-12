@@ -16,10 +16,10 @@
      * @param cat The category that was added
      */
     addCategory: function(cat) {
-      var reqs = new Requirements(cat.get("requirements"));
-      cat.set("requirements", reqs);
+      // var reqs = new Requirements(cat.get("requirements"));
+      // cat.set("requirements", reqs);
 
-      reqs.each(function(req) {
+      cat.get("requirements").each(function(req) {
         req.set("category", cat);
       });
 

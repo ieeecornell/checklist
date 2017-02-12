@@ -8,6 +8,8 @@
 //= require collections/courses
 //= require views/admin/courseView
 //= require views/admin/coursesView
+//= require views/admin/categoryView
+//= require views/admin/categoriesView
 //= require views/admin/navView
 
 (function() {

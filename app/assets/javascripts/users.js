@@ -20,7 +20,7 @@
     catsView.render();
 
     // Display the enrolled courses form
-    var ecs = new courses;
+    var ecs = new Courses;
     var ecsView = new EnrolledCoursesView({collection: ecs});
     ecsView.render();
 

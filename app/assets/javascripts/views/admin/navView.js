@@ -8,7 +8,7 @@
 
     initialize: function() {
       // Show the courses view by default
-      this.currentView = "courses";
+      this.currentView = "cats";
       this.loadView();
     },
 
@@ -34,6 +34,10 @@
         case "courses":
           this.view = new CoursesView;
           this.$("[data-view='courses']").addClass("selected");
+          break;
+        case "cats":
+          this.view = new CategoriesView;
+          this.$("[data-view='cats']").addClass("selected");
           break;
       }
 
