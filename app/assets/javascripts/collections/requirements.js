@@ -1,6 +1,7 @@
 (function() {
   var Requirements = Backbone.Collection.extend({
-    model: Requirement
+    model: Requirement,
+    comparator: "sequence"
   });
 
   window.Requirements = Requirements;

@@ -59,7 +59,6 @@ script type="text/html" id="requirement-template"
       <input type="text" id="display" value="<%- req.display %>" placeholder="Requirement name">
     </header>
     <section>
-      <input type="hidden" id="sequence" value="<%= req.sequence %>">
       <dl>
         <dt>Description</dt>
           <dd>
@@ -76,6 +75,17 @@ script type="text/html" id="requirement-template"
         <dt>Allow crosslisting?</dt>
           <dd>
             <input type="checkbox" id="allow-crosslisting" <%= req.allow_crosslisting ? "checked" : "" %> />
+          </dd>
+        <dt>Sequence after</dt>
+          <dd>
+            <select id="sequence">
+              <option value="0">(beginning)</option>
+              <% requirements.each(function(r) { %>
+                <% if (r.id != req.id) { %>
+                  <option value="<%= r.get("sequence") + 1 %>" <%= r.get("sequence") + 1 == req.sequence ? "selected" : "" %>><%= r.get("display") %></option>
+                <% } %>
+              <% }); %>
+            </select>
           </dd>
     </section>
     <footer>

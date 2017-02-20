@@ -13,7 +13,8 @@
         success: _.bind(function(groups) {
           this.$el.html(this.template({
             req: this.model.attributes,
-            groups: groups
+            groups: groups,
+            requirements: this.model.getCategory().get("requirements")
           }));
         }, this)
       });
@@ -35,13 +36,34 @@
         display: display,
         description: description,
         group_id: groupId,
-        allow_crosslisting: allowCrosslisting
+        allow_crosslisting: allowCrosslisting,
+        sequence: sequence
       });
+
+      // Add this model to the collection if it isn't part of it
+      if (!this.model.collection) {
+        this.model.getCategory().get("requirements").add(this.model);
+      }
+
+      // Update affected models that may have been offset by the sequencing
+      this.model.collection.each(function(req) {
+        if (req.id != this.model.id && req.get("sequence") >= sequence) {
+          req.set("sequence", req.get("sequence") + 1);
+        }
+      }, this)
+      this.model.collection.sort();
+      this.model.collection.each(function(req, i) {
+        req.set("sequence", i);
+        
+        if (req.id != this.model.id) {
+          req.save();
+        }
+      }, this);
 
       // Update the button text
       this.$(".save-requirement").html("Saving&hellip;").addClass("disabled");
 
-      // Save the course
+      // Save the affected courses
       this.model.save(null, {
         success: _.bind(function() {
           // Add the link to the collection if it didn't exist
