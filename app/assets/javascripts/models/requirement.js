@@ -1,10 +1,14 @@
 (function() {
   var Requirement = Backbone.Model.extend({
     urlRoot: function() {
-      return "/categories/" + this.get("category").get("id") + "/requirements"
+      var categoryId = this.get("category_id") ||
+                       this.get("category") && this.get("category").id ||
+                       this.category.id;
+      return "/categories/" + categoryId + "/requirements";
     },
     url: function() {
-      return this.urlRoot() + "/" + this.get("id") + ".json";
+      return this.urlRoot() + (this.get("id") ? "/" + this.get("id") : "") +
+        ".json";
     },
 
     getFilled: function() {
@@ -21,6 +25,14 @@
 
     isFilled: function() {
       return !!this.filledWith;
+    },
+
+    getCategory: function() {
+      return this.category;
+    },
+
+    setCategory: function(cat) {
+      this.category = cat;
     }
   });
 

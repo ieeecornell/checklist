@@ -1,60 +1,18 @@
 (function() {
-  var CourseView = Backbone.View.extend({
-    tagName: "div",
-    className: "modal",
-
-    events: {
-      "click .modal-bg": "closeModal",
-      "click .close-course": "closeModal",
+  var CourseView = ModalView.extend({
+    events: _.extend({
       "click .add-code": "addCode",
       "click .add-metadata": "addMetadata",
       "click .delete-code": "removeCode",
       "click .delete-metadata": "removeMetadata",
       "click .save-course": "saveCourse",
       "click .delete-course": "deleteCourse"
-    },
-
-    initialize: function() {
-      if (this.model.isNew()) {
-        this.openModal();
-      }
-      else {
-        // Fetch the detals for the course
-        this.model.fetch({
-          success: _.bind(this.openModal, this)
-        });
-      }
-    },
+    }, ModalView.prototype.events),
 
     template: _.template($("#course-template").html()),
 
-    openModal: function() {
-      this.$el
-          .html(this.template({data: this.model.attributes}))
-          .appendTo("body")
-      this.$el.find(".modal-bg").hide().fadeIn(250);
-      this.$el.find(".modal-fg").css({
-        opacity: 0,
-        marginTop: "-50px",
-        marginBottom: "50px"
-      }).animate({
-        opacity: 1,
-        marginTop: 0,
-        marginBottom: 0
-      }, 250);
-    },
-
-    closeModal: function(e) {
-      if (e && e.preventDefault) e.preventDefault();
-
-      this.$el.find(".modal-bg").fadeOut(250);
-      this.$el.find(".modal-fg").animate({
-        opacity: 0,
-        marginTop: "-50px",
-        marginBottom: "50px"
-      }, 250, _.bind(function() {
-        this.remove();
-      }, this));
+    render: function() {
+      this.$el.html(this.template({data: this.model.attributes}));
     },
 
     addCode: function(e) {

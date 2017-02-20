@@ -47,8 +47,42 @@ script type="text/html" id="course-template"
     <footer>
       <div class="btn-group">
         <a href="#" class="btn btn-positive save-course">Save</a>
-        <a href="#" class="btn btn-negative close-course">Close</a>
+        <a href="#" class="btn btn-negative close-modal">Close</a>
         <a href="#" class="btn btn-negative pull-right delete-course">Delete</a>
+      </div>
+    </footer>
+  </div>
+script type="text/html" id="requirement-template"
+  <div class="modal-bg" />
+  <div class="modal-fg">
+    <header>
+      <input type="text" id="display" value="<%- req.display %>" placeholder="Requirement name">
+    </header>
+    <section>
+      <input type="hidden" id="sequence" value="<%= req.sequence %>">
+      <dl>
+        <dt>Description</dt>
+          <dd>
+            <textarea id="description"><%= req.description %></textarea>
+          </dd>
+        <dt>Group</dt>
+          <dd>
+            <select id="groups">
+              <% groups.each(function(group) { %>
+                <option value="<%= group.get("id") %>" <%= group.get("id") == req.group_id ? "selected" : "" %>><%= group.get("name") %></option>
+              <% }); %>
+            </select>
+          </dd>
+        <dt>Allow crosslisting?</dt>
+          <dd>
+            <input type="checkbox" id="allow-crosslisting" <%= req.allow_crosslisting ? "checked" : "" %> />
+          </dd>
+    </section>
+    <footer>
+      <div class="btn-group">
+        <a href="#" class="btn btn-positive save-requirement">Save</a>
+        <a href="#" class="btn btn-negative close-modal">Close</a>
+        <a href="#" class="btn btn-negative pull-right delete-requirement">Delete</a>
       </div>
     </footer>
   </div>
