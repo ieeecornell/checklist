@@ -9,7 +9,7 @@
     },
 
     initialize: function() {
-      this.model.get("requirements").on("add change", this.render, this);
+      this.model.get("requirements").on("add remove change", this.render, this);
     },
 
     render: function() {
