@@ -4,24 +4,20 @@
     className: "admin-content",
 
     initialize: function() {
+      this.$catsList = $("<ul class='categories-list' />").appendTo(this.$el);
+      this.$el.appendTo("body");
+      
       this.collection = new Categories;
-      this.collection.on("add", this.addCategory, this);
-      this.collection.on("remove", this.removeCategory, this);
+      this.collection.on("update", this.render, this);
       this.collection.fetch();
     },
 
-    addCategory: function(cat) {
-      var catView = new CategoryView({model: cat});
-      this.$catsList.append(catView.render());
-    },
-
-    removeCategory: function(cat) {
-      
-    },
-
     render: function() {
-      this.$catsList = $("<ul class='categories-list' />").appendTo(this.$el);
-      this.$el.appendTo("body");
+      this.$catsList.empty();
+      this.collection.each(function(cat) {
+        var catView = new CategoryView({model: cat});
+        this.$catsList.append(catView.render());
+      }, this);
     }
   });
 

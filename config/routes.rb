@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :courses, except: [:new]
   resources :groups, only: [:index, :show]
-  resources :categories, only: [:index, :show] do
+  resources :categories, except: [:new] do
     resources :requirements, except: [:new]
   end
 

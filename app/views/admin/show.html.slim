@@ -96,3 +96,32 @@ script type="text/html" id="requirement-template"
       </div>
     </footer>
   </div>
+script type="text/html" id="edit-category-template"
+  <div class="modal-bg" />
+  <div class="modal-fg">
+    <header>
+      <input type="text" id="name" value="<%- cat.name %>" placeholder="Category name">
+    </header>
+    <section>
+      <dl>
+        <dt>Sequence after</dt>
+          <dd>
+            <select id="sequence">
+              <option value="0">(beginning)</option>
+              <% categories.each(function(c) { %>
+                <% if (c.id != cat.id) { %>
+                  <option value="<%- c.get("sequence") + 1 %>" <%= c.get("sequence") + 1 == cat.sequence ? "selected" : "" %>><%- c.get("name") %></option>
+                <% } %>
+              <% }); %>
+            </select>
+          </dd>
+      </dl>
+    </section>
+    <footer>
+      <div class="btn-group">
+        <a href="#" class="btn btn-positive save-category">Save</a>
+        <a href="#" class="btn btn-negative close-modal">Close</a>
+        <a href="#" class="btn btn-negative pull-right delete-category">Delete</a>
+      </div>
+    </footer>
+  </div>

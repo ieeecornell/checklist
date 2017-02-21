@@ -11,6 +11,7 @@
 //= require views/admin/coursesView
 //= require views/admin/requirementView
 //= require views/admin/categoryView
+//= require views/admin/editCategoryView
 //= require views/admin/categoriesView
 //= require views/admin/navView
 

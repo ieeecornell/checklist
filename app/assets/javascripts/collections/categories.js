@@ -3,6 +3,8 @@
     model: Category,
     url: "/categories.json",
 
+    comparator: "sequence",
+
     parse: function(response) {
       return _.map(response, function(cat) {
         cat.requirements = new Requirements(cat.requirements);

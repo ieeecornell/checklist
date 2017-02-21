@@ -5,7 +5,8 @@
 
     events: {
       "click .reqs li:not(.add-requirement)": "showRequirement",
-      "click .reqs .add-requirement": "addRequirement"
+      "click .reqs .add-requirement": "addRequirement",
+      "click .edit-category": "editCategory"
     },
 
     initialize: function() {
@@ -17,6 +18,7 @@
       this.$el.empty().append(
         "<div class='title-desc'>" +
           "<h2>" + this.model.get("name") + "</h2>" +
+          "<p><a href='#' class='edit-category'>Edit</a></p>" +
         "</div>"
       );
 
@@ -58,6 +60,16 @@
       req.set("sequence", this.model.get("requirements").length);
       req.setCategory(this.model);
       new RequirementView({model: req});
+    },
+
+    editCategory: function(e) {
+      e.preventDefault();
+
+      // Open a modal to edit the category
+      new EditCategoryView({
+        model: this.model,
+        collection: this.model.collection
+      });
     }
   });
 
