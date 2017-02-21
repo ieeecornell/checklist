@@ -710,7 +710,7 @@ tbody.linked {
             }
         }
 
-        .create-course {
+        .btn-positive {
             background: $green;
             border-color: $green;
             color: $white;
@@ -873,6 +873,7 @@ tbody.linked {
     line-height: 32px;
     padding: 0 16px;
     text-decoration: none;
+    display: inline-block;
 
     &.disabled {
         opacity: 0.4;
