@@ -10,7 +10,7 @@ class CoursesGroupsController < ApplicationController
         course = Course.find_by_code(code.upcase)
 
         unless course.blank?
-          CoursesGroup.create(group_id: group.id, course_id: course.id)
+          group.add_course(course)
         end
       end
 
@@ -21,13 +21,13 @@ class CoursesGroupsController < ApplicationController
         course = Course.find_by_code(code.upcase)
 
         unless course.blank?
-          CoursesGroup.where(group_id: group.id, course_id: course.id).destroy_all
+          group.remove_course(course)
         end
       end
     end
 
     respond_to do |format|
-      format.json { render nothing: true, status: :ok }
+      format.json { render json: {}, status: :ok }
     end
   end
 end

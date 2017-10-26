@@ -103,7 +103,7 @@ if ENV['groups']
       if db_course.blank?
         puts "Could not find course #{code}"
       else
-        db_group.courses << db_course
+        db_group.add_course(db_course)
       end
     end
   end
@@ -111,31 +111,31 @@ if ENV['groups']
   # Add liberal studies groups
   puts '-> Adding Liberal Studies'
   ls_group = Group.create(name: 'Liberal Studies')
-  ls_group.courses << Course.where("metadata ? 'libstud'")
+  ls_group.add_courses(Course.where("metadata ? 'libstud'"))
   ls_2000_group = Group.create(name: 'Liberal Studies 2000')
-  ls_2000_group.courses << Course.find_by_sql(
+  ls_2000_group.add_courses(Course.find_by_sql(
     "SELECT DISTINCT c.* FROM courses c, unnest(codes) a " +
     "WHERE a SIMILAR TO '% [2-9]%' AND metadata ? 'libstud'"
-  )
+  ))
 
   # Add a PE group
   puts '-> Adding Physical Education'
   pe_group = Group.create(name: 'Physical Education')
-  pe_group.courses << Course.find_by_sql(
+  pe_group.add_courses(Course.find_by_sql(
     "SELECT DISTINCT c.* FROM courses c, unnest(codes) a WHERE a LIKE 'PE %'"
-  )
+  ))
 
   # Add a FWS group
   puts '-> Adding First-year Writing Seminar'
   fws_group = Group.create(name: 'First-year Writing Seminar')
-  fws_group.courses << Course.where("title ILIKE 'FWS:%'")
+  fws_group.add_courses(Course.where("title ILIKE 'FWS:%'"))
 
   # Add an ENGRI group
   puts '-> Adding Introduction to Engineering'
   engri_group = Group.create(name: 'Introduction to Engineering')
-  engri_group.courses << Course.find_by_sql(
+  engri_group.add_courses(Course.find_by_sql(
     "SELECT DISTINCT c.* FROM courses c, unnest(codes) a WHERE a LIKE 'ENGRI %'"
-  )
+  ))
 end
 
 if ENV['cats']

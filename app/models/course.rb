@@ -1,6 +1,7 @@
 class Course < ApplicationRecord
-  has_many :groups, through: :courses_groups
-  has_many :courses_groups
+  def groups
+    Group.where(":id = ANY(course_ids)", id: id)
+  end
 
   def self.find_by_code(code)
     Course.find_by_sql([
