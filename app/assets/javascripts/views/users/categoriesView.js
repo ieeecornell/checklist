@@ -87,6 +87,59 @@
         }, this));
       }, this));
 
+      // See if any courses that haven't been used could free up a course that
+      // is being used for that requirement to be used in a different, unfilled
+      // requirement
+      var madeSwap = true;
+      while (madeSwap) {
+        madeSwap = false;
+
+        this.ecs.each(_.bind(function(unfilledEc) {
+          // Do nothing if this course is being used already
+          if (unfilledEc.isFilling()) return;
+
+          // Check for a course that is being used that could fill both of these
+          // requirements
+          this.ecs.each(_.bind(function(otherEc) {
+            // Don't check a course against itself
+            if (unfilledEc.get("id") == otherEc.get("id")) return;
+
+            // Don't try swapping a course that's not filling something
+            if (!otherEc.isFilling()) return;
+
+            // Check if what this other course is filling could be filled by
+            // the course that's not filling anything
+            var fills = unfilledEc.get("groups").some(function(group) {
+              return group.id == otherEc.filledWith.get("group_id");
+            });
+            if (!fills) return;
+
+            // Check if there's an unfilled requirement that could be filled by
+            // the other course
+            madeSwap = !this.collection.every(function(cat) {
+              return cat.get("requirements").every(function(req) {
+                var fills = otherEc.get("groups").some(function(group) {
+                  return group.id == req.get("group_id");
+                });
+                if (!req.isFilled() && fills) {
+                  var oldReq = otherEc.filledWith;
+
+                  oldReq.setFilled(unfilledEc);
+                  unfilledEc.setFills(oldReq);
+
+                  req.setFilled(otherEc);
+                  otherEc.setFills(req);
+
+                  return false;
+                }
+
+                return true;
+              });
+            }, this);
+          }, this));
+        }, this));
+      }
+
       // Try to fill outside technical electives
       var otes = this.collection.findWhere({
         name: "Outside-ECE Technical Electives"
