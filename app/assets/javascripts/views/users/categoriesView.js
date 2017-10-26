@@ -94,29 +94,29 @@
       while (madeSwap) {
         madeSwap = false;
 
-        this.ecs.each(_.bind(function(unfilledEc) {
+        this.ecs.each(function(unfilledEc) {
           // Do nothing if this course is being used already
           if (unfilledEc.isFilling()) return;
 
           // Check for a course that is being used that could fill both of these
           // requirements
-          this.ecs.each(_.bind(function(otherEc) {
+          this.ecs.every(function(otherEc) {
             // Don't check a course against itself
-            if (unfilledEc.get("id") == otherEc.get("id")) return;
+            if (unfilledEc.get("id") == otherEc.get("id")) return true;
 
             // Don't try swapping a course that's not filling something
-            if (!otherEc.isFilling()) return;
+            if (!otherEc.isFilling()) return true;
 
             // Check if what this other course is filling could be filled by
             // the course that's not filling anything
             var fills = unfilledEc.get("groups").some(function(group) {
               return group.id == otherEc.filledWith.get("group_id");
             });
-            if (!fills) return;
+            if (!fills) return true;
 
             // Check if there's an unfilled requirement that could be filled by
             // the other course
-            madeSwap = !this.collection.every(function(cat) {
+            var swapCourse = !this.collection.every(function(cat) {
               return cat.get("requirements").every(function(req) {
                 var fills = otherEc.get("groups").some(function(group) {
                   return group.id == req.get("group_id");
@@ -136,8 +136,15 @@
                 return true;
               });
             }, this);
-          }, this));
-        }, this));
+
+            if (swapCourse) {
+              madeSwap = true;
+              return false;
+            }
+
+            return true;
+          }, this);
+        }, this);
       }
 
       // Try to fill outside technical electives
