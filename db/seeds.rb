@@ -114,7 +114,7 @@ if ENV['groups']
   ls_group.courses << Course.where("metadata ? 'libstud'")
   ls_2000_group = Group.create(name: 'Liberal Studies 2000')
   ls_2000_group.courses << Course.find_by_sql(
-    "SELECT c.* FROM courses c, unnest(codes) a " +
+    "SELECT DISTINCT c.* FROM courses c, unnest(codes) a " +
     "WHERE a SIMILAR TO '% [2-9]%' AND metadata ? 'libstud'"
   )
 
@@ -122,7 +122,7 @@ if ENV['groups']
   puts '-> Adding Physical Education'
   pe_group = Group.create(name: 'Physical Education')
   pe_group.courses << Course.find_by_sql(
-    "SELECT c.* FROM courses c, unnest(codes) a WHERE a LIKE 'PE %'"
+    "SELECT DISTINCT c.* FROM courses c, unnest(codes) a WHERE a LIKE 'PE %'"
   )
 
   # Add a FWS group
@@ -134,7 +134,7 @@ if ENV['groups']
   puts '-> Adding Introduction to Engineering'
   engri_group = Group.create(name: 'Introduction to Engineering')
   engri_group.courses << Course.find_by_sql(
-    "SELECT c.* FROM courses c, unnest(codes) a WHERE a LIKE 'ENGRI %'"
+    "SELECT DISTINCT c.* FROM courses c, unnest(codes) a WHERE a LIKE 'ENGRI %'"
   )
 end
 

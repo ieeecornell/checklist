@@ -43,12 +43,39 @@ script type="text/html" id="course-template"
             </ul>
             <a href="#" class="add-metadata">+ Add metadata</a>
           </dd>
+        <dt>Groups</dt>
+          <dd>
+            <%- data.groups.map(function(g) { return g.get("name"); }).join(", ") %>
+          </dd>
+      </dl>
     </section>
     <footer>
       <div class="btn-group">
         <a href="#" class="btn btn-positive save-course">Save</a>
         <a href="#" class="btn btn-negative close-modal">Close</a>
         <a href="#" class="btn btn-negative pull-right delete-course">Delete</a>
+      </div>
+    </footer>
+  </div>
+script type="text/html" id="group-template"
+  <div class="modal-bg" />
+  <div class="modal-fg">
+    <header>
+      <input type="text" id="name" value="<%- group.name %>" placeholder="Group name">
+    </header>
+    <section>
+      <dl>
+        <dt>Courses to add</dt>
+          <dd><textarea id="add-courses"></textarea></dd>
+        <dt>Courses to remove</dt>
+          <dd><textarea id="remove-courses"></textarea></dd>
+      </dl>
+    </section>
+    <footer>
+      <div class="btn-group">
+        <a href="#" class="btn btn-positive save-group">Save</a>
+        <a href="#" class="btn btn-negative close-modal">Close</a>
+        <a href="#" class="btn btn-negative pull-right delete-group">Delete</a>
       </div>
     </footer>
   </div>

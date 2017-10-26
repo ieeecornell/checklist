@@ -9,6 +9,8 @@
 //= require views/modalView
 //= require views/admin/courseView
 //= require views/admin/coursesView
+//= require views/admin/groupView
+//= require views/admin/groupsView
 //= require views/admin/requirementView
 //= require views/admin/categoryView
 //= require views/admin/editCategoryView
