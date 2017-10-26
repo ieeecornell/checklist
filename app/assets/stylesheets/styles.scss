@@ -465,6 +465,58 @@ header.main-nav {
 // -----------------------------------------------------------------------------
 // Mobile styles
 // -----------------------------------------------------------------------------
+@media (max-width: 1100px) {
+    .checklist {
+        .category {
+            h3 {
+                float: left;
+                width: 100%;
+                padding: 6px 6px 0 6px;
+                box-sizing: border-box;
+            }
+
+            span.course,
+            span.help,
+            span.libstud-cat {
+                float: left;
+                margin: 6px 0 6px 6px;
+            }
+
+            span.course {
+                clear: left;
+            }
+
+            .info li {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media (max-width: 720px) {
+   .courses-container .help-text {
+        position: static;
+        width: 100%;
+        box-sizing: border-box;
+        height: 30px;
+        line-height: 30px;
+        margin: 10px 0;
+        padding: 0;
+    } 
+    
+    .enrolled-course-list {
+        .add-semester {
+            h2 {
+                input[type="submit"] {
+                    display: block;
+                    clear: left;
+                    margin: 10px 0 0 0;
+                }
+            }
+        }
+    }
+}
+
 @media (max-width: 480px) {
     .inside {
         width: 95%;
@@ -490,16 +542,6 @@ header.main-nav {
     .courses-container {
         position: static;
         width: 100%;
-    }
-
-    .courses-container .help-text {
-        position: static;
-        width: 100%;
-        box-sizing: border-box;
-        height: 30px;
-        line-height: 30px;
-        margin: 10px 0;
-        padding: 0;
     }
 
     .checklist {
