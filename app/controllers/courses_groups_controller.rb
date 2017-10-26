@@ -1,4 +1,6 @@
 class CoursesGroupsController < ApplicationController
+  before_action :authenticate
+  
   def update
     CoursesGroup.transaction do
       group = Group.find(params[:group_id])

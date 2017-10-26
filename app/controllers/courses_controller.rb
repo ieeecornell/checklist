@@ -1,4 +1,5 @@
 class CoursesController < ApplicationController
+  before_action :authenticate, except: [:index, :show]
   def index
     # Get the page and rows per page, if they were specified
     page = params[:page].blank? ? nil : params[:page].to_i

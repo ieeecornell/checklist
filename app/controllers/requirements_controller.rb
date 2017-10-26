@@ -1,4 +1,6 @@
 class RequirementsController < ApplicationController
+  before_action :authenticate, except: [:index, :show]
+  
   def index
     cat = Category.find(params[:category_id]) || not_found
     reqs = cat.requirements || not_found
