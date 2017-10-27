@@ -45,7 +45,7 @@ script type="text/html" id="course-template"
           </dd>
         <dt>Groups</dt>
           <dd>
-            <%- data.groups.map(function(g) { return g.get("name"); }).join(", ") %>
+            <%- (data.groups || []).map(function(g) { return g.get("name"); }).join(", ") %>
           </dd>
       </dl>
     </section>
