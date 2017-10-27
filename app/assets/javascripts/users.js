@@ -36,5 +36,8 @@
     cats.on("update", function() {
         ecs.set(JSON.parse(localStorage.getItem("courses")));
     });
+
+    // Create a "semester" for transfer credit
+    ecsView.addSemester({label: "Transfer Credit"});
 })();
 

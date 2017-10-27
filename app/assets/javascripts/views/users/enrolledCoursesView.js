@@ -21,19 +21,23 @@
 
       // If the semester does not exist, create it
       if (!semester) {
-        semester = this.addSemester(course.get("semester"), course.get("year"));
+        semester = this.addSemester({
+          semester: course.get("semester"),
+          year: course.get("year")
+        });
       }
 
       // Add the course to the semester UI
       semester.addCourse(course);
     },
 
-    addSemester: function(semester, year) {
+    addSemester: function(opts) {
       // Create a form for this semester
       var semesterForm = new SemesterView({
         collection: this.collection,
-        semester: semester,
-        year: year,
+        semester: opts.semester,
+        year: opts.year,
+        label: opts.label,
         parentView: this
       });
 
@@ -84,7 +88,7 @@
       }
 
       // Add the semester
-      this.addSemester(semester, year);
+      this.addSemester({semester: semester, year: year});
 
       // Clear the year input
       $("#year").val("");
@@ -128,6 +132,11 @@
       var semester2 = $f2.attr("data-semester");
       var year1 = Number($f1.attr("data-year"));
       var year2 = Number($f2.attr("data-year"));
+
+      // Assume that transfer requests come before every semester (and that they
+      // have no semester attribute)
+      if (!semester1) return true;
+      else if (!semester2) return false;
 
       var semesterCodes = {
         "W": 0,

@@ -13,6 +13,8 @@
     initialize: function(opts) {
       this.semester = opts.semester;
       this.year = opts.year;
+      this.label = opts.label ||
+                   this.getSemesterDisplay(opts.semester) + " " + opts.year;
       this.parentView = opts.parentView;
     },
 
@@ -22,13 +24,15 @@
       this.$el.attr("data-year", this.year);
       
       // Generate the datalist ID
-      var dlId = this.semester + "-" + this.year + "-dl";
+      var dlId = this.label.replace(/\s*/g, '-') + "-dl";
 
       // Construct the view elements
       this.$el.append(
         "<h2>" +
-          this.getSemesterDisplay(this.semester) + " " + this.year +
-          "<a href='#' class='remove-semester' title='Remove'>&times;</a>" +
+          this.label +
+          (this.semester ?
+            "<a href='#' class='remove-semester' title='Remove'>&times;</a>" :
+            "") +
         "</h2>" +
         "<ul>" +
           "<li class='add-course editing'>" +
