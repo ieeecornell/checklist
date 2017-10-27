@@ -120,6 +120,9 @@
     },
 
     formAddCourse: function() {
+      // Don't let somebody hit enter twice
+      if (this.isAdding) return;
+
       // Get the course code
       var $addButton = this.$el.find(".add-course");
       var $input = $addButton.find("input");
@@ -135,13 +138,16 @@
       }
 
       // Add the course to the list of courses
+      this.isAdding = true;
       var course = new Course;
       course.on("change", _.bind(function() {
         course.set("semester", this.semester);
         course.set("year", this.year);
         this.collection.add(course);
+        this.isAdding = false;
       }, this));
       course.fetchByCode(code, function() {
+        this.isAdding = false;
         alert("Could not find course " + code);
       });
     },
