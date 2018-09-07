@@ -1,24 +1,11 @@
-# README
+# Graduation checklist tool
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Install the checklist tool
 
-Things you may want to cover:
+Requires Ruby and Rubygems.
 
-* Ruby version
+Run `gem install bundler` then `bundle install`. That should get everything installed. This app uses Postgres as the DB.
 
-* System dependencies
+## Deployment
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The app is currently deployed in the free tier of Heroku but it should get moved to AWS, or wherever the main site is hosted, since that will be cheaper and will allow for more database rows probably.
